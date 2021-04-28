@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[JQuery]動態欄位(Dynamic column) | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[JQuery]動態欄位(Dynamic column)"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[JQuery]動態欄位(Dynamic column)" />
+<meta property="og:description" content="對於前端來說，許多專案針對Form的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用Jquery來實現" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.gitlab.io/home/jq1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-14T13:56:00&#43;00:00" />
+<meta property="article:modified_time" content="2018-07-14T13:56:00&#43;00:00" />
+
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/home/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/home/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="f/home/avicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/home/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/home/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/home/apple-touch-icon.png"><link rel="manifest" href="/home/site.webmanifest"><link rel="canonical" href="https://songyuleo.gitlab.io/home/jq1/" /><link rel="stylesheet" href="/home/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/home/css/style.min.css"><link rel="stylesheet" href="/home/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[JQuery]動態欄位(Dynamic column)",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.gitlab.io\/home\/jq1\/"
+        },"image": ["https:\/\/songyuleo.gitlab.io\/home\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JQuery, JavaScript","wordCount":  13 ,
+        "url": "https:\/\/songyuleo.gitlab.io\/home\/jq1\/","datePublished": "2018-07-14T13:56:00+00:00","dateModified": "2018-07-14T13:56:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.gitlab.io\/home\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "JQuery 筆記",
+            "item": "https://songyuleo.gitlab.io/home/categories/jquery-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[JQuery]動態欄位(Dynamic column)"
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/home/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/home/posts/"> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/home/tags/"> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/home/categories/"> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/home/page/about/"> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/home/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/home/posts/" title="">文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/home/tags/" title="">標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/home/categories/" title="">分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/home/page/about/" title="">關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/home/">主頁 </a></li><li><a href="/home/categories/jquery-%E7%AD%86%E8%A8%98/">JQuery 筆記 </a></li><li>[JQuery]動態欄位(Dynamic column)</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[JQuery]動態欄位(Dynamic column)</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/home/categories/jquery-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>JQuery 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2018-07-14">2018-07-14</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 13 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-example">1. Example</a></li>
+  </ul>
+</nav></div>
+                    </div><p>對於前端來說，許多專案針對<code>Form</code>的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用<a href="https://jquery.com/" target="_blank" rel="noopener noreffer"><code>Jquery</code></a>來實現</p>
+<h2 id="1-example" class="headerLink"><a href="#1-example" class="header-mark"></a>1. Example</h2><iframe height='265' scrolling='no' title='Dynamic colunm' src='//codepen.io/SungYuHe/embed/oMgvzW/?height=265&theme-id=dark&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/SungYuHe/pen/oMgvzW/'>Dynamic colunm</a> by LeoHe (<a href='https://codepen.io/SungYuHe'>@SungYuHe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.gitlab.io/home/jq1/" data-title="[JQuery]動態欄位(Dynamic column)" data-hashtags="JQuery,JavaScript"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.gitlab.io/home/jq1/" data-hashtag="JQuery"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.gitlab.io/home/jq1/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.gitlab.io/home/jq1/" data-title="[JQuery]動態欄位(Dynamic column)"><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.gitlab.io/home/jq1/" data-title="[JQuery]動態欄位(Dynamic column)"><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.gitlab.io/home/jq1/" data-title="[JQuery]動態欄位(Dynamic column)" data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.gitlab.io/home/jq1/" data-title="[JQuery]動態欄位(Dynamic column)"><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/home/tags/jquery/" class="tag">JQuery</a><a href="/home/tags/javascript/" class="tag">JavaScript</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.0">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.gitlab.io/home/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/home/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/home/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/home/lib/autocomplete/autocomplete.min.js"></script><script src="/home/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/home/lib/clipboard/clipboard.min.js"></script><script src="/home/lib/sharer/sharer.min.js"></script><script src="/home/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/home/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>

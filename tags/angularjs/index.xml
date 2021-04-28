@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AngularJs - 標籤 - 里歐口袋筆記</title>
+        <link>https://songyuleo.gitlab.io/home/tags/angularjs/</link>
+        <description>AngularJs - 標籤 - 里歐口袋筆記</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 09 Jun 2018 14:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/home/tags/angularjs/" rel="self" type="application/rss+xml" /><item>
+    <title>[AngularJS] $broadcast , $emit , $on 事件處理機制筆記</title>
+    <link>https://songyuleo.gitlab.io/home/angular1/</link>
+    <pubDate>Sat, 09 Jun 2018 14:00:00 &#43;0000</pubDate>
+    <author>Leo He</author>
+    <guid>https://songyuleo.gitlab.io/home/angular1/</guid>
+    <description><![CDATA[<p>公司專案使用<a href="https://code.angularjs.org/1.6.10/docs/guide/migration" target="_blank" rel="noopener noreffer"><code>AngularJs 1.6</code></a>開發,面對使用者複雜又特殊的requirement ，一個page切多個<code>controller</code>也方便未來維護，那<code>controller</code>間如何來互相傳值呢?</p>]]></description>
+</item></channel>
+</rss>
