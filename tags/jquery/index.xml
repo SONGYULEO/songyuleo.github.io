@@ -1,21 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>JQuery - 標籤 - 里歐口袋筆記</title>
-        <link>https://songyuleo.gitlab.io/home/tags/jquery/</link>
+        <link>https://songyuleo.github.io/tags/jquery/</link>
         <description>JQuery - 標籤 - 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Wed, 12 Sep 2018 20:41:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/home/tags/jquery/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Wed, 12 Sep 2018 20:41:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/tags/jquery/" rel="self" type="application/rss+xml" /><item>
     <title>[C#、JQuery]Cross-Domain server 端處理</title>
-    <link>https://songyuleo.gitlab.io/home/cross_domain/</link>
+    <link>https://songyuleo.github.io/cross_domain/</link>
     <pubDate>Wed, 12 Sep 2018 20:41:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/cross_domain/</guid>
+    <guid>https://songyuleo.github.io/cross_domain/</guid>
     <description><![CDATA[<p>紀錄一下許早之前遇到的<code>Cross-Domain</code>問題，在Local測試得很開心都沒問題，一把東西丟到測試環境這問題就出現了&hellip;</p>]]></description>
 </item><item>
     <title>[JQuery]動態欄位(Dynamic column)</title>
-    <link>https://songyuleo.gitlab.io/home/jq1/</link>
+    <link>https://songyuleo.github.io/jq1/</link>
     <pubDate>Sat, 14 Jul 2018 13:56:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/jq1/</guid>
+    <guid>https://songyuleo.github.io/jq1/</guid>
     <description><![CDATA[<p>對於前端來說，許多專案針對<code>Form</code>的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用<a href="https://jquery.com/" target="_blank" rel="noopener noreffer"><code>Jquery</code></a>來實現</p>]]></description>
 </item></channel>
 </rss>
