@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>DotNet 5 - 標籤 - 里歐口袋筆記</title>
+        <link>https://songyuleo.github.io/tags/dotnet-5/</link>
+        <description>DotNet 5 - 標籤 - 里歐口袋筆記</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Wed, 21 Apr 2021 18:13:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/tags/dotnet-5/" rel="self" type="application/rss+xml" /><item>
+    <title>[C#]Aspose for . NET 筆記</title>
+    <link>https://songyuleo.github.io/aspose/</link>
+    <pubDate>Wed, 21 Apr 2021 18:13:00 &#43;0000</pubDate>
+    <author>Leo He</author>
+    <guid>https://songyuleo.github.io/aspose/</guid>
+    <description><![CDATA[<p>呼 已經許久沒更新文章了，距離上一次是2018&hellip;，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。</p>
+<hr>
+<p>相信在公司碰過文件轉換的需求（如word to pdf），特別又是office 系列一定用過<em><strong>DCOM</strong></em>來處理這個問題，但微軟已經不support 這個元件，所以使用上只能祈禱不會遇到問題。。（偏偏就是遇到問題了這篇才生出來的</p>]]></description>
+</item></channel>
+</rss>
