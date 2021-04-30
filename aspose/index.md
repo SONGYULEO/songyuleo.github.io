@@ -31,7 +31,7 @@ doc.Save(path + "output.pdf");
 - Aspose.Words
 - Aspose.Words.Shaping.HarfBuzz
 
-## 以下為範例
+## 2. 範例
 (ps.範例為原始word轉pdf)
 ```
 MemoryStream ms = new MemoryStream();
