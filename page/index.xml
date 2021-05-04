@@ -7,12 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hant</language><atom:link href="https://songyuleo.github.io/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
+      <title>About Me</title>
       <link>https://songyuleo.github.io/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://songyuleo.github.io/page/about/</guid>
-      <description>About Me簡介曾開發過Fin-tech 程式交易(with C++)、補習班後勤管理系統(with php &amp;amp; mysql)、Global MES integration system (with AngularJs &amp;amp; C#)…
+      <description>簡介一個從南跑到北的軟體人，熱愛探索軟硬體相關資訊，
+
+曾開發過Fin-tech 程式交易(with C++)、補習班後勤管理系統(with php &amp;amp; mysql)、Global MES integration system (with AngularJs &amp;amp; C#)…
 現任職於某金融公司著重於 ERP開發
  由於工作所學甚多，常常筆記丟東丟西，乾脆弄一個blog來記錄、整理一下順便也幫自己複習一下…</description>
     </item>
