@@ -11,7 +11,7 @@
 
 曾開發過
 - Fin-tech 程式交易(with C++) 
-- 補習班後勤管理系統(with php) <span style='font-size: 2em; color: while;'><i class="fab fa-php"></i> </span>
+- 補習班後勤管理系統(with php) <span style='font-size: 2em; color: MediumPurple;'><i class="fab fa-php"></i> </span>
 
 - Global MES integration system (with  AngularJs ＆ C#) 
 <span style='font-size: 2em; color: red;'><i class="fab fa-angular"></i> </span> 
@@ -25,7 +25,7 @@
 
 
 
-**現任職於某金融公司使用Agile 分析與開發 ERP **
+**現任職於某金融公司用Agile 分析與開發 ERP **
 
 
 **由於工作所學甚多，常常筆記丟東丟西，乾脆弄一個blog來記錄、整理一下順便也幫自己複習一下…**
