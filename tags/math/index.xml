@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>math - 標籤 - 里歐口袋筆記</title>
-        <link>https://songyuleo.gitlab.io/home/tags/math/</link>
+        <link>https://songyuleo.gitlab.io/tags/math/</link>
         <description>math - 標籤 - 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sun, 05 Mar 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/home/tags/math/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sun, 05 Mar 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/tags/math/" rel="self" type="application/rss+xml" /><item>
     <title>Math Sample</title>
-    <link>https://songyuleo.gitlab.io/home/2017-03-05-math-sample/</link>
+    <link>https://songyuleo.gitlab.io/2017-03-05-math-sample/</link>
     <pubDate>Sun, 05 Mar 2017 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
-    <guid>https://songyuleo.gitlab.io/home/2017-03-05-math-sample/</guid>
+    <guid>https://songyuleo.gitlab.io/2017-03-05-math-sample/</guid>
     <description><![CDATA[<p>KaTeX can be used to generate complex math formulas. It supports in-line math using the <code>\\( ... \\)</code> delimiters, like this: \( E = mc^2 \). By default, it does <em>not</em> support in-line delimiters <code>$...$</code> because those occur too commonly in typical webpages. It supports displayed math using the <code>$$</code> or <code>\\[...\\]</code> delimiters, like this:</p>
 <p>Formula 1:
 $$

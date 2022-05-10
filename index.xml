@@ -1,53 +1,53 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>里歐口袋筆記</title>
-        <link>https://songyuleo.gitlab.io/home/</link>
+        <link>https://songyuleo.gitlab.io/</link>
         <description>里歐口袋筆記</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Wed, 21 Apr 2021 14:13:00 &#43;0000</lastBuildDate>
-            <atom:link href="https://songyuleo.gitlab.io/home/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="https://songyuleo.gitlab.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>[C#]Aspose for . NET 筆記</title>
-    <link>https://songyuleo.gitlab.io/home/aspose/</link>
+    <link>https://songyuleo.gitlab.io/aspose/</link>
     <pubDate>Wed, 21 Apr 2021 14:13:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/aspose/</guid>
+    <guid>https://songyuleo.gitlab.io/aspose/</guid>
     <description><![CDATA[<p>呼 已經許久沒更新文章了，距離上一次是2018&hellip;，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。</p>
 <hr>
 <p>相信在公司碰過文件轉換的需求（如word to pdf），特別又是office 系列一定用過<em><strong>DCOM</strong></em>來處理這個問題，但微軟已經不support 這個元件，所以使用上只能祈禱不會遇到問題。。（偏偏就是遇到問題了這篇才生出來的</p>]]></description>
 </item><item>
     <title>[C#]切換不同環境 Entity </title>
-    <link>https://songyuleo.gitlab.io/home/entityswitch/</link>
+    <link>https://songyuleo.gitlab.io/entityswitch/</link>
     <pubDate>Sun, 02 Dec 2018 17:56:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/entityswitch/</guid>
+    <guid>https://songyuleo.gitlab.io/entityswitch/</guid>
     <description><![CDATA[<p>在開發期間使用的Entity是在test環境下，但要切換到正式環境不用整個專案review一次或者把entity拿掉才能切換過去，不能針對xxx.edmx底下的<code>DbContext</code>直接修改，這是系統自動產生的，但可以再另外partail class要切換的Connection name 。</p>]]></description>
 </item><item>
     <title>[C#、JQuery]Cross-Domain server 端處理</title>
-    <link>https://songyuleo.gitlab.io/home/cross_domain/</link>
+    <link>https://songyuleo.gitlab.io/cross_domain/</link>
     <pubDate>Wed, 12 Sep 2018 20:41:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/cross_domain/</guid>
+    <guid>https://songyuleo.gitlab.io/cross_domain/</guid>
     <description><![CDATA[<p>紀錄一下許早之前遇到的<code>Cross-Domain</code>問題，在Local測試得很開心都沒問題，一把東西丟到測試環境這問題就出現了&hellip;</p>]]></description>
 </item><item>
     <title>[C#]自訂排序(Custom Sort)</title>
-    <link>https://songyuleo.gitlab.io/home/csharp1/</link>
+    <link>https://songyuleo.gitlab.io/csharp1/</link>
     <pubDate>Sat, 21 Jul 2018 14:13:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/csharp1/</guid>
+    <guid>https://songyuleo.gitlab.io/csharp1/</guid>
     <description><![CDATA[<p>User這次給了一道題目，按照指定的規則且多個條件下排序資料&hellip;，這非得要實作<a href="https://msdn.microsoft.com/zh-tw/library/system.icomparable&amp;#40;v=vs.110&amp;#41;.aspx" target="_blank" rel="noopener noreffer"><code>IComparable</code></a>來實現了。</p>]]></description>
 </item><item>
     <title>[JQuery]動態欄位(Dynamic column)</title>
-    <link>https://songyuleo.gitlab.io/home/jq1/</link>
+    <link>https://songyuleo.gitlab.io/jq1/</link>
     <pubDate>Sat, 14 Jul 2018 13:56:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/jq1/</guid>
+    <guid>https://songyuleo.gitlab.io/jq1/</guid>
     <description><![CDATA[<p>對於前端來說，許多專案針對<code>Form</code>的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用<a href="https://jquery.com/" target="_blank" rel="noopener noreffer"><code>Jquery</code></a>來實現</p>]]></description>
 </item><item>
     <title>[AngularJS] $broadcast , $emit , $on 事件處理機制筆記</title>
-    <link>https://songyuleo.gitlab.io/home/angular1/</link>
+    <link>https://songyuleo.gitlab.io/angular1/</link>
     <pubDate>Sat, 09 Jun 2018 14:00:00 &#43;0000</pubDate>
     <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/home/angular1/</guid>
+    <guid>https://songyuleo.gitlab.io/angular1/</guid>
     <description><![CDATA[<p>公司專案使用<a href="https://code.angularjs.org/1.6.10/docs/guide/migration" target="_blank" rel="noopener noreffer"><code>AngularJs 1.6</code></a>開發,面對使用者複雜又特殊的requirement ，一個page切多個<code>controller</code>也方便未來維護，那<code>controller</code>間如何來互相傳值呢?</p>]]></description>
 </item></channel>
 </rss>

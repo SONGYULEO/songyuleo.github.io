@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on 里歐口袋筆記</title>
-    <link>https://songyuleo.gitlab.io/home/page/</link>
+    <link>https://songyuleo.gitlab.io/page/</link>
     <description>Recent content in Pages on 里歐口袋筆記</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hant</language><atom:link href="https://songyuleo.gitlab.io/home/page/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-Hant</language><atom:link href="https://songyuleo.gitlab.io/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://songyuleo.gitlab.io/home/page/about/</link>
+      <link>https://songyuleo.gitlab.io/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://songyuleo.gitlab.io/home/page/about/</guid>
+      <guid>https://songyuleo.gitlab.io/page/about/</guid>
       <description>About Me簡介一個由南跑到北又折返回南部的軟體人
 曾開發過Fin-tech 程式交易(with C++)、補習班後勤管理系統(with php &amp;amp; mysql)、Global MES integration system (with AngularJs &amp;amp; C#)、金融業 ERP開發維運、擔任ERP轉型公版SA（Cloud Native with Dotnet 6 &amp;amp; Angular）。。。
 現任職於軟體新創公司 擔任專案ＰＭ（with scrum）
