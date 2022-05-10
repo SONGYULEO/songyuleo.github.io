@@ -47,42 +47,5 @@
     <author>Leo He</author>
     <guid>https://songyuleo.gitlab.io/angular1/</guid>
     <description><![CDATA[<p>公司專案使用<a href="https://code.angularjs.org/1.6.10/docs/guide/migration" target="_blank" rel="noopener noreffer"><code>AngularJs 1.6</code></a>開發,面對使用者複雜又特殊的requirement ，一個page切多個<code>controller</code>也方便未來維護，那<code>controller</code>間如何來互相傳值呢?</p>]]></description>
-</item><item>
-    <title>Photoswipe Gallery Sample</title>
-    <link>https://songyuleo.gitlab.io/2017-03-20-photoswipe-gallery-sample/</link>
-    <pubDate>Mon, 20 Mar 2017 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://songyuleo.gitlab.io/2017-03-20-photoswipe-gallery-sample/</guid>
-    <description><![CDATA[<p>Beautiful Hugo adds a few custom shortcodes created by <a href="https://www.liwen.id.au/heg/" target="_blank" rel="noopener noreffer">Li-Wen Yip</a> and <a href="https://github.com/GjjvdBurg/HugoPhotoSwipe" target="_blank" rel="noopener noreffer">Gert-Jan van den Berg</a> for making galleries with <a href="http://photoswipe.com" target="_blank" rel="noopener noreffer">PhotoSwipe</a> .</p>]]></description>
-</item><item>
-    <title>Big Image Sample</title>
-    <link>https://songyuleo.gitlab.io/2017-03-07-bigimg-sample/</link>
-    <pubDate>Tue, 07 Mar 2017 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://songyuleo.gitlab.io/2017-03-07-bigimg-sample/</guid>
-    <description><![CDATA[<p>The image banners at the top of the page are refered to as &ldquo;bigimg&rdquo; in this theme. They are optional, and one more more can be specified. If more than one is specified, the images rotate every 10 seconds. In the front matter, bigimgs are specified using an array of hashes.</p>]]></description>
-</item><item>
-    <title>Math Sample</title>
-    <link>https://songyuleo.gitlab.io/2017-03-05-math-sample/</link>
-    <pubDate>Sun, 05 Mar 2017 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://songyuleo.gitlab.io/2017-03-05-math-sample/</guid>
-    <description><![CDATA[<p>KaTeX can be used to generate complex math formulas. It supports in-line math using the <code>\\( ... \\)</code> delimiters, like this: \( E = mc^2 \). By default, it does <em>not</em> support in-line delimiters <code>$...$</code> because those occur too commonly in typical webpages. It supports displayed math using the <code>$$</code> or <code>\\[...\\]</code> delimiters, like this:</p>
-<p>Formula 1:
-$$
-\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
-$$</p>
-<p>Formula 2: (same formula, different delimiter)
-\[
-\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
-\]</p>
-<p>Additional details can be found on <a href="https://github.com/Khan/KaTeX" target="_blank" rel="noopener noreffer">GitHub</a> or on the <a href="http://tiddlywiki.com/plugins/tiddlywiki/katex/" target="_blank" rel="noopener noreffer">Wiki</a>.</p>]]></description>
-</item><item>
-    <title>Code Sample</title>
-    <link>https://songyuleo.gitlab.io/2016-03-08-code-sample/</link>
-    <pubDate>Tue, 08 Mar 2016 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://songyuleo.gitlab.io/2016-03-08-code-sample/</guid>
-    <description><![CDATA[<p>The following are two code samples using syntax highlighting.</p>]]></description>
 </item></channel>
 </rss>
