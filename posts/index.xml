@@ -11,7 +11,7 @@
     <guid>https://songyuleo.gitlab.io/aspose/</guid>
     <description><![CDATA[<p>呼 已經許久沒更新文章了，距離上一次是2018&hellip;，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。</p>
 <hr>
-<p>相信在公司碰過文件轉換的需求（如word to pdf），特別又是office 系列一定用過<em><strong>DCOM</strong></em>來處理這個問題，但微軟已經不support 這個元件，所以使用上只能祈禱不會遇到問題。。（偏偏就是遇到問題了這篇才生出來的</p>]]></description>
+<p>相信在公司碰過文件轉換的需求（如word to pdf），特別又是office 系列一定用過<em><strong>DCOM</strong></em>來處理這個問題，但微軟已經不support 這個元件，所以使用上會出現一些怪怪問題。。</p>]]></description>
 </item><item>
     <title>[C#]切換不同環境 Entity </title>
     <link>https://songyuleo.gitlab.io/entityswitch/</link>
