@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>code - 標籤 - 里歐口袋筆記</title>
+        <link>https://songyuleo.gitlab.io/home/tags/code/</link>
+        <description>code - 標籤 - 里歐口袋筆記</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 08 Mar 2016 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/home/tags/code/" rel="self" type="application/rss+xml" /><item>
+    <title>Code Sample</title>
+    <link>https://songyuleo.gitlab.io/home/2016-03-08-code-sample/</link>
+    <pubDate>Tue, 08 Mar 2016 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://songyuleo.gitlab.io/home/2016-03-08-code-sample/</guid>
+    <description><![CDATA[<p>The following are two code samples using syntax highlighting.</p>]]></description>
+</item></channel>
+</rss>

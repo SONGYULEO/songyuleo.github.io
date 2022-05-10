@@ -1,34 +1,15 @@
+# 
+
 # About Me
 
-
-
 ### 簡介
-一個從南跑到北的軟體人，熱愛探索軟硬體相關資訊，也喜愛打球 
-<span style='font-size: 1.5em; color: yellow;'><i class="fas fa-volleyball-ball"></i></span>
-和兩輪
-<span style='font-size: 1.5em; color: RoyalBlue;'><i class="fas fa-biking"></i></i></span>
+一個由南跑到北又折返回南部的軟體人
 
+曾開發過Fin-tech 程式交易(with C++)、補習班後勤管理系統(with php & mysql)、Global MES integration system (with AngularJs & C#)、金融業 ERP開發維運、擔任ERP轉型公版SA（Cloud Native with Dotnet 6 & Angular）。。。
 
-曾開發過
-- Fin-tech 程式交易(with C++) 
-- 補習班後勤管理系統(with php) <span style='font-size: 2em; color: MediumPurple;'><i class="fab fa-php"></i> </span>
+現任職於軟體新創公司 擔任專案ＰＭ（with scrum）
 
-- Global MES integration system (with  AngularJs ＆ C#) 
-<span style='font-size: 2em; color: red;'><i class="fab fa-angular"></i> </span> 
-<span style='font-size: 2em; color: gold;'><i class="fab fa-js-square"></i></span>
-<span style='font-size: 2em; color: ForestGreen;'><i class="fab fa-microsoft"></i></span>
-
-
-- ERP develop ＆ surrounding system integration(C# ＆ VB .Net)
-<span style='font-size: 2em; color: gold;'><i class="fab fa-js-square"></i></span>
-<span style='font-size: 2em; color: ForestGreen;'><i class="fab fa-microsoft"></i></span>
-
-
-
-**現任職於某金融公司用Agile 分析與開發 ERP **
-
-
-**由於工作所學甚多，常常筆記丟東丟西，乾脆弄一個blog來記錄、整理一下順便也幫自己複習一下…**
+由於工作所學甚多，常常筆記丟東丟西，乾脆弄一個blog來記錄、整理一下順便也幫自己複習一下…
 
 
 
