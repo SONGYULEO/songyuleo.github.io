@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tools - 標籤 - 里歐口袋筆記</title>
+        <link>https://songyuleo.gitlab.io/tags/tools/</link>
+        <description>Tools - 標籤 - 里歐口袋筆記</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/tags/tools/" rel="self" type="application/rss+xml" /><item>
+    <title>[Tools]VS Code Plugin - ERD Editor 筆記</title>
+    <link>https://songyuleo.gitlab.io/erd-editor/</link>
+    <pubDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>Leo He</author>
+    <guid>https://songyuleo.gitlab.io/erd-editor/</guid>
+    <description><![CDATA[<p>相信在許多軟體開發上，前期分析難免會碰到資料庫的設計與規劃，若手頭上剛好有VS Code 這套IDE工具，可以來試試這個很讚的plugin吧！</p>]]></description>
+</item></channel>
+</rss>

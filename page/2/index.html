@@ -133,100 +133,34 @@
 <article itemscope itemtype="http://schema.org/Article">
     <div class="summary summary-animation" style="margin-bottom:0">
         <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2017-03-20-photoswipe-gallery-sample/" target="_blank">Photoswipe Gallery Sample</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2017-03-20">2017-03-20</time></span></div></div>
+                    <a href="/jq1/" target="_blank">[JQuery]動態欄位(Dynamic column)</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/jquery-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>JQuery 筆記</a>
+                    </span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2018-07-14">2018-07-14</time></span></div></div>
         </header>
 
-        <div class="article-text"><div class="content summary-content"><p>Beautiful Hugo adds a few custom shortcodes created by <a href="https://www.liwen.id.au/heg/" target="_blank" rel="noopener noreffer">Li-Wen Yip</a> and <a href="https://github.com/GjjvdBurg/HugoPhotoSwipe" target="_blank" rel="noopener noreffer">Gert-Jan van den Berg</a> for making galleries with <a href="http://photoswipe.com" target="_blank" rel="noopener noreffer">PhotoSwipe</a> .</p></div></div>
+        <div class="article-text"><div class="content summary-content"><p>對於前端來說，許多專案針對<code>Form</code>的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用<a href="https://jquery.com/" target="_blank" rel="noopener noreffer"><code>Jquery</code></a>來實現</p></div></div>
     </div>
 
     <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/example/" style="">example</a><a class="post-tag-summary" href="/tags/photoswipe/" style="">photoswipe</a></div>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/jquery/" style="">JQuery</a><a class="post-tag-summary" href="/tags/javascript/" style="">JavaScript</a></div>
         </footer></div>
 </article>
 
 <article itemscope itemtype="http://schema.org/Article">
     <div class="summary summary-animation" style="margin-bottom:0">
         <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2017-03-07-bigimg-sample/" target="_blank">Big Image Sample</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2017-03-07">2017-03-07</time></span></div></div>
+                    <a href="/angular1/" target="_blank">[AngularJS] $broadcast , $emit , $on 事件處理機制筆記</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/angularjs-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>AngularJs 筆記</a>
+                    </span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2018-06-09">2018-06-09</time></span></div></div>
         </header>
 
-        <div class="article-text"><div class="content summary-content"><p>The image banners at the top of the page are refered to as &ldquo;bigimg&rdquo; in this theme. They are optional, and one more more can be specified. If more than one is specified, the images rotate every 10 seconds. In the front matter, bigimgs are specified using an array of hashes.</p></div></div>
+        <div class="article-text"><div class="content summary-content"><p>公司專案使用<a href="https://code.angularjs.org/1.6.10/docs/guide/migration" target="_blank" rel="noopener noreffer"><code>AngularJs 1.6</code></a>開發,面對使用者複雜又特殊的requirement ，一個page切多個<code>controller</code>也方便未來維護，那<code>controller</code>間如何來互相傳值呢?</p></div></div>
     </div>
 
     <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/example/" style="">example</a><a class="post-tag-summary" href="/tags/bigimg/" style="">bigimg</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2017-03-05-math-sample/" target="_blank">Math Sample</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2017-03-05">2017-03-05</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content"><p>KaTeX can be used to generate complex math formulas. It supports in-line math using the <code>\\( ... \\)</code> delimiters, like this: \( E = mc^2 \). By default, it does <em>not</em> support in-line delimiters <code>$...$</code> because those occur too commonly in typical webpages. It supports displayed math using the <code>$$</code> or <code>\\[...\\]</code> delimiters, like this:</p>
-<p>Formula 1:
-$$
-\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
-$$</p>
-<p>Formula 2: (same formula, different delimiter)
-\[
-\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
-\]</p>
-<p>Additional details can be found on <a href="https://github.com/Khan/KaTeX" target="_blank" rel="noopener noreffer">GitHub</a> or on the <a href="http://tiddlywiki.com/plugins/tiddlywiki/katex/" target="_blank" rel="noopener noreffer">Wiki</a>.</p></div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/example/" style="">example</a><a class="post-tag-summary" href="/tags/math/" style="">math</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2016-03-08-code-sample/" target="_blank">Code Sample</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2016-03-08">2016-03-08</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content"><p>The following are two code samples using syntax highlighting.</p></div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/example/" style="">example</a><a class="post-tag-summary" href="/tags/code/" style="">code</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2015-02-26-flake-it-till-you-make-it/" target="_blank">Flake it till you make it</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-02-26">2015-02-26</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content">Under what circumstances should we step off a path? When is it essential that we finish what we start? If I bought a bag of peanuts and had an allergic reaction, no one would fault me if I threw it out. If I ended a relationship with a woman who hit me, no one would say that I had a commitment problem. But if I walk away from a seemingly secure route because my soul has other ideas, I am a flake?</div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2015-02-20-test-markdown/" target="_blank">Test markdown</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-02-20">2015-02-20</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content">You can write regular markdown here and Jekyll will automatically convert it to a nice webpage. I strongly encourage you to take 5 minutes to learn how to write in markdown - it&rsquo;ll teach you how to transform regular text into bold/italics/headings/tables/etc.
-Here is some bold text
-Here is a secondary headingHere&rsquo;s a useless table:
-   Number Next number Previous number     Five Six Four   Ten Eleven Nine   Seven Eight Six   Two Three One    How about a yummy crepe?</div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/example/" style="">example</a><a class="post-tag-summary" href="/tags/markdown/" style="">markdown</a></div>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/angularjs/" style="">AngularJs</a></div>
         </footer></div>
 </article>
 
@@ -240,10 +174,6 @@ Here is a secondary headingHere&rsquo;s a useless table:
             </li><li class="page-item active">
                     <span class="page-link">
                         <a href="/page/2/">2</a>
-                    </span>
-            </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/3/">3</a>
                     </span>
             </li></ul>
     </nav>
