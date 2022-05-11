@@ -3,16 +3,9 @@
         <title>里歐口袋筆記</title>
         <link>https://songyuleo.gitlab.io/</link>
         <description>里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 01 Mar 2022 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://songyuleo.gitlab.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>[Kubernetes]k8s 筆記</title>
-    <link>https://songyuleo.gitlab.io/k8s-1/</link>
-    <pubDate>Tue, 01 Mar 2022 00:00:00 &#43;0000</pubDate>
-    <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/k8s-1/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
     <title>[Tools]VS Code Plugin - ERD Editor 筆記</title>
     <link>https://songyuleo.gitlab.io/erd-editor/</link>
     <pubDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</pubDate>
