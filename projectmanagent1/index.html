@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[專案管理]淺談敏捷專案管理實務Part 1 | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[專案管理]淺談敏捷專案管理實務Part 1"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[專案管理]淺談敏捷專案管理實務Part 1" />
+<meta property="og:description" content="在許多公司的軟體發展管理上，逐漸盛行敏捷管理(Agile)也很常聽到名詞敏捷、快速、Scrum等，在幾次面試新進員工跟了解其在過去參與的敏捷管理的經驗，發現認知與執行的內容慘不忍睹，喪失了敏捷其核心理念，有鑒於此還是筆記一下敏捷管理方法的實務和常見的瀑布式開發(WaterFall)差異到底在哪呢?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.gitlab.io/projectmanagent1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-02T11:10:00+00:00" />
+<meta property="article:modified_time" content="2021-11-02T11:10:00+00:00" />
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://songyuleo.gitlab.io/projectmanagent1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[專案管理]淺談敏捷專案管理實務Part 1",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.gitlab.io\/projectmanagent1\/"
+        },"image": ["https:\/\/songyuleo.gitlab.io\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "專案管理","wordCount":  32 ,
+        "url": "https:\/\/songyuleo.gitlab.io\/projectmanagent1\/","datePublished": "2021-11-02T11:10:00+00:00","dateModified": "2021-11-02T11:10:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.gitlab.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "專案管理 筆記",
+            "item": "https://songyuleo.gitlab.io/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[專案管理]淺談敏捷專案管理實務Part 1"
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"><i class='fas fa-tag'></i> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"><i class='far fa-bookmark'></i> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/"><i class='far fa-address-book'></i> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title=""><i class='fas fa-tag'></i>標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title=""><i class='far fa-bookmark'></i>分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/" title=""><i class='far fa-address-book'></i>關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">主頁 </a></li><li><a href="/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/">專案管理 筆記 </a></li><li>[專案管理]淺談敏捷專案管理實務Part 1</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[專案管理]淺談敏捷專案管理實務Part 1</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>專案管理 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-11-02">2021-11-02</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 32 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-敏捷理念">1. 敏捷理念</a>
+      <ul>
+        <li><a href="#綜合以上其實會發現敏捷的快速來自於持續地交付有用的軟體關鍵也在建構溝通合作的自我管理團隊"><code>綜合以上其實會發現敏捷的快速來自於持續地交付有用的軟體，關鍵也在建構溝通合作的自我管理團隊</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-敏捷vs瀑布">2. 敏捷VS瀑布</a>
+      <ul>
+        <li><a href="#產品市場和需求是否明確"><strong>產品市場和需求是否明確?</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#以上點出敏捷並不適用於任何情境"><code>以上點出敏捷並不適用於任何情境</code></a></li>
+    <li><a href="#而是針對目標選用合適的管理方法為最佳方式"><code>而是針對目標選用合適的管理方法為最佳方式</code></a>
+      <ul>
+        <li><a href="#讓我們來看看敏捷流程跟瀑布的流程差異">讓我們來看看敏捷流程跟瀑布的流程差異</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><p>在許多公司的軟體發展管理上，逐漸盛行敏捷管理(Agile)也很常聽到名詞<code>敏捷</code>、<code>快速</code>、<code>Scrum</code>等，在幾次面試新進員工跟了解其在過去參與的敏捷管理的經驗，發現認知與執行的內容慘不忍睹，喪失了敏捷其核心理念，有鑒於此還是筆記一下敏捷管理方法的實務和常見的瀑布式開發(WaterFall)差異到底在哪呢?</p>
+<h2 id="1-敏捷理念" class="headerLink"><a href="#1-%e6%95%8f%e6%8d%b7%e7%90%86%e5%bf%b5" class="header-mark"></a>1. 敏捷理念</h2><p><code>敏捷</code>一詞源自<a href="https://code.angularjs.org/1.6.10/docs/guide/migration" target="_blank" rel="noopener noreffer"><code>敏捷宣言(Agile Manifesto)</code></a>，著重於</p>
+<ul>
+<li><strong>個人與互動</strong> 重於 流程與工具</li>
+<li><strong>可用的軟體</strong> 重於 詳盡的文件</li>
+<li><strong>與客戶合作</strong> 重於 合約協商</li>
+<li><strong>回應變化</strong> 重於 遵循計劃 </li>
+</ul>
+<p>裡面也很表明提出的看法優先序左邊項目大於右邊項目，<strong>但但但但</strong>不表示右方不必執行與規劃，其<a href="http://agilemanifesto.org/principles.html" target="_blank" rel="noopener noreffer">背後理念(principles)</a>挑出幾個最常被誤會跟沒有落實的觀點</p>
+<ul>
+<li>
+<p><em><strong>最優先的任務，是透過及早並持續地交付有價值的軟體來滿足客戶需求。</strong></em></p>
+</li>
+<li>
+<p><em><strong>經常交付可用的軟體，週期可以從幾週到幾個月，以較短時間間隔為佳。</strong></em></p>
+</li>
+<li>
+<p><em><strong>產品人員與軟體開發者必須在專案全程中天天一起工作。</strong></em></p>
+</li>
+<li>
+<p><em><strong>面對面的溝通是傳遞資訊給開發團隊及團隊成員之間效率最高且效果最佳的方法。</strong></em>
+ </p>
+</li>
+</ul>
+<h3 id="綜合以上其實會發現敏捷的快速來自於持續地交付有用的軟體關鍵也在建構溝通合作的自我管理團隊" class="headerLink"><a href="#%e7%b6%9c%e5%90%88%e4%bb%a5%e4%b8%8a%e5%85%b6%e5%af%a6%e6%9c%83%e7%99%bc%e7%8f%be%e6%95%8f%e6%8d%b7%e7%9a%84%e5%bf%ab%e9%80%9f%e4%be%86%e8%87%aa%e6%96%bc%e6%8c%81%e7%ba%8c%e5%9c%b0%e4%ba%a4%e4%bb%98%e6%9c%89%e7%94%a8%e7%9a%84%e8%bb%9f%e9%ab%94%e9%97%9c%e9%8d%b5%e4%b9%9f%e5%9c%a8%e5%bb%ba%e6%a7%8b%e6%ba%9d%e9%80%9a%e5%90%88%e4%bd%9c%e7%9a%84%e8%87%aa%e6%88%91%e7%ae%a1%e7%90%86%e5%9c%98%e9%9a%8a" class="header-mark"></a><code>綜合以上其實會發現敏捷的快速來自於持續地交付有用的軟體，關鍵也在建構溝通合作的自我管理團隊</code></h3><hr>
+<h2 id="2-敏捷vs瀑布" class="headerLink"><a href="#2-%e6%95%8f%e6%8d%b7vs%e7%80%91%e5%b8%83" class="header-mark"></a>2. 敏捷VS瀑布</h2><p>敏捷說穿只是一個思維，常聽到的<code>Scrum</code>為其實現這個理念的其中一個流派，讓我們先來試問團隊是否需要敏捷?</p>
+<blockquote>
+<h3 id="產品市場和需求是否明確" class="headerLink"><a href="#%e7%94%a2%e5%93%81%e5%b8%82%e5%a0%b4%e5%92%8c%e9%9c%80%e6%b1%82%e6%98%af%e5%90%a6%e6%98%8e%e7%a2%ba" class="header-mark"></a><strong>產品市場和需求是否明確?</strong></h3></blockquote>
+<p>舉個例子</p>
+<p>就如耳熟能詳的產品ERP、電商系統等，這類軟體產品通常在市場均有成熟的解決方案，若是想要參考模仿開發出相似軟體產品均可借鏡，也就對於<code>需求和市場有一定的認知和範圍</code>，那此時是否反而用常見的瀑布式開發來完整規劃參與的人、事、物、時間、成本等，也能較掌握風險的控管。</p>
+<h2 id="以上點出敏捷並不適用於任何情境" class="headerLink"><a href="#%e4%bb%a5%e4%b8%8a%e9%bb%9e%e5%87%ba%e6%95%8f%e6%8d%b7%e4%b8%a6%e4%b8%8d%e9%81%a9%e7%94%a8%e6%96%bc%e4%bb%bb%e4%bd%95%e6%83%85%e5%a2%83" class="header-mark"></a><code>以上點出敏捷並不適用於任何情境</code></h2><h2 id="而是針對目標選用合適的管理方法為最佳方式" class="headerLink"><a href="#%e8%80%8c%e6%98%af%e9%87%9d%e5%b0%8d%e7%9b%ae%e6%a8%99%e9%81%b8%e7%94%a8%e5%90%88%e9%81%a9%e7%9a%84%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95%e7%82%ba%e6%9c%80%e4%bd%b3%e6%96%b9%e5%bc%8f" class="header-mark"></a><code>而是針對目標選用合適的管理方法為最佳方式</code></h2><h3 id="讓我們來看看敏捷流程跟瀑布的流程差異" class="headerLink"><a href="#%e8%ae%93%e6%88%91%e5%80%91%e4%be%86%e7%9c%8b%e7%9c%8b%e6%95%8f%e6%8d%b7%e6%b5%81%e7%a8%8b%e8%b7%9f%e7%80%91%e5%b8%83%e7%9a%84%e6%b5%81%e7%a8%8b%e5%b7%ae%e7%95%b0" class="header-mark"></a>讓我們來看看敏捷流程跟瀑布的流程差異</h3><p>
+
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://songyuleo.gitlab.io/projectmanagent1/imgs/scrum_hubce51206b02a684745e6307b51f5d092_182395_1600x0_resize_q100_box_3.png"
+         alt="Scrum-platform"
+         title="scrum.png"
+    /></p>
+<p>本質差異除了<code>做事思維的不同外</code>，相對於敏捷，瀑布式在個階段均須有對應文件與規劃(如SRS、SDS、WBS等)缺一均會影響專案執行和品質。</p>
+<p>敏捷注重團隊溝通和做團隊認為最優先的事情以利最短時間內完成<code>最小可行性產品(MVP)</code>並持續驗證產品可行性，快速即時修正調整產品方向，依此來降低執行專案風險</p>
+<p>下一篇來介紹Scrum 執行實務內容和最小可行性產品(MVP)</p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.gitlab.io/projectmanagent1/" data-title="[專案管理]淺談敏捷專案管理實務Part 1" data-hashtags="專案管理"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.gitlab.io/projectmanagent1/" data-hashtag="專案管理"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.gitlab.io/projectmanagent1/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.gitlab.io/projectmanagent1/" data-title="[專案管理]淺談敏捷專案管理實務Part 1"><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.gitlab.io/projectmanagent1/" data-title="[專案管理]淺談敏捷專案管理實務Part 1"><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.gitlab.io/projectmanagent1/" data-title="[專案管理]淺談敏捷專案管理實務Part 1" data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.gitlab.io/projectmanagent1/" data-title="[專案管理]淺談敏捷專案管理實務Part 1"><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86/" class="tag">專案管理</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.4">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.gitlab.io/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>

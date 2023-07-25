@@ -1,11 +1,11 @@
 # [C#]Aspose for . NET 筆記
 
 呼 已經許久沒更新文章了，距離上一次是2018...，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。
-
+<!--more-->
 ---
 
 相信在公司碰過文件轉換的需求（如word to pdf），特別又是office 系列一定用過***DCOM***來處理這個問題，但微軟已經不support 這個元件，所以使用上會出現一些怪怪問題。。
-<!--more-->
+
 所以就開始Survey 一些不靠DCOM也能轉的套件，找了幾間最後還是看上    Aspose ，聯絡了一下拿到了 Temporary License 
 
 但原先提供的simple code 看似兩三行可以解決，純英文的文件或許可行，但遇到其他語言如高綿文就會發現轉出來的PDF還是會有亂碼。。。
@@ -26,7 +26,7 @@ doc.Save(path + "output.pdf");
 
 要先從Nuget安裝以下兩個套件
 
-![image-20210430161440048](/images/posts/image-20210430161440048.png)
+![image-20210430161440048](imgs/image-20210430161440048.png)
 
 - Aspose.Words
 - Aspose.Words.Shaping.HarfBuzz

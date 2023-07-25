@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[C#]切換不同環境 Entity  | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[C#]切換不同環境 Entity "/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[C#]切換不同環境 Entity " />
+<meta property="og:description" content="在開發期間使用的Entity是在test環境下，但要切換到正式環境不用整個專案review一次或者把entity拿掉才能切換過去，不能針對xxx.edmx底下的DbContext直接修改，這是系統自動產生的，但可以再另外partail class要切換的Connection name 。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.gitlab.io/entityframwork1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-12-02T17:56:00+00:00" />
+<meta property="article:modified_time" content="2018-12-02T17:56:00+00:00" />
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://songyuleo.gitlab.io/entityframwork1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[C#]切換不同環境 Entity ",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.gitlab.io\/entityframwork1\/"
+        },"image": ["https:\/\/songyuleo.gitlab.io\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "C Sharp, Entity","wordCount":  103 ,
+        "url": "https:\/\/songyuleo.gitlab.io\/entityframwork1\/","datePublished": "2018-12-02T17:56:00+00:00","dateModified": "2018-12-02T17:56:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.gitlab.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "C Sharp 筆記",
+            "item": "https://songyuleo.gitlab.io/categories/c-sharp-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[C#]切換不同環境 Entity "
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"><i class='fas fa-tag'></i> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"><i class='far fa-bookmark'></i> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/"><i class='far fa-address-book'></i> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title=""><i class='fas fa-tag'></i>標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title=""><i class='far fa-bookmark'></i>分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/" title=""><i class='far fa-address-book'></i>關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">主頁 </a></li><li><a href="/categories/c-sharp-%E7%AD%86%E8%A8%98/">C Sharp 筆記 </a></li><li>[C#]切換不同環境 Entity </li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[C#]切換不同環境 Entity </h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/c-sharp-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>C Sharp 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2018-12-02">2018-12-02</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 103 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-解說">1. 解說</a>
+      <ul>
+        <li><a href="#11-在專案中產生一個partial-class">1.1 在專案中產生一個Partial class</a>
+          <ul>
+            <li><a href="#接下來到appconfig-or-webconfig-裡面找到appsettings加入這些這樣未來只要改appconfig-or-webconfig就能切換">接下來到<code>app.config</code> or <code>web.config</code> 裡面找到<code>&lt;appSettings&gt;</code>加入這些，這樣未來只要改<code>app.config</code> or <code>web.config</code>就能切換。</a>
+              <ul>
+                <li><a href="#接下來在原先宣告entity的地方改成如下圖如需切換entity-connection只要修改appconfig-or-webconfigappsettings裡面的內容就好了">接下來在原先宣告Entity的地方改成如下圖,如需切換Entity Connection只要修改<code>app.config</code> or <code>web.config</code><appSettings>裡面的內容就好了。</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><p>在開發期間使用的Entity是在test環境下，但要切換到正式環境不用整個專案review一次或者把entity拿掉才能切換過去，不能針對xxx.edmx底下的<code>DbContext</code>直接修改，這是系統自動產生的，但可以再另外partail class要切換的Connection name 。</p>
+<p>ps.這邊是系統自動產生，不要在這邊修改
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://i.imgur.com/47ZiRig.png"
+         alt="https://i.imgur.com/47ZiRig.png"
+         title="47ZiRig.png"
+    /></p>
+<hr>
+<h2 id="1-解說" class="headerLink"><a href="#1-%e8%a7%a3%e8%aa%aa" class="header-mark"></a>1. 解說</h2><h3 id="11-在專案中產生一個partial-class" class="headerLink"><a href="#11-%e5%9c%a8%e5%b0%88%e6%a1%88%e4%b8%ad%e7%94%a2%e7%94%9f%e4%b8%80%e5%80%8bpartial-class" class="header-mark"></a>1.1 在專案中產生一個Partial class</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    public partial class Entities : DbContext
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        public Entities (string ConnectionString):base(ConnectionString)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public class SwitchDbContext
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        public Entities CreateDbContext(string connectionstring)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            switch (connectionstring)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                //QA連線
+</span></span><span class="line"><span class="cl">                case &#34;QA&#34;:
+</span></span><span class="line"><span class="cl">                    return new Entities();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                //Production連線
+</span></span><span class="line"><span class="cl">                case &#34;Production&#34;:
+</span></span><span class="line"><span class="cl">                    return new Entities(&#34;name=EntitiesP&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                //預設為QA連線
+</span></span><span class="line"><span class="cl">                default:
+</span></span><span class="line"><span class="cl">                    return new Entities();
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br />
+### 1.2 修改設定檔
+<h4 id="接下來到appconfig-or-webconfig-裡面找到appsettings加入這些這樣未來只要改appconfig-or-webconfig就能切換" class="headerLink"><a href="#%e6%8e%a5%e4%b8%8b%e4%be%86%e5%88%b0appconfig-or-webconfig-%e8%a3%a1%e9%9d%a2%e6%89%be%e5%88%b0appsettings%e5%8a%a0%e5%85%a5%e9%80%99%e4%ba%9b%e9%80%99%e6%a8%a3%e6%9c%aa%e4%be%86%e5%8f%aa%e8%a6%81%e6%94%b9appconfig-or-webconfig%e5%b0%b1%e8%83%bd%e5%88%87%e6%8f%9b" class="header-mark"></a>接下來到<code>app.config</code> or <code>web.config</code> 裡面找到<code>&lt;appSettings&gt;</code>加入這些，這樣未來只要改<code>app.config</code> or <code>web.config</code>就能切換。</h4><p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://i.imgur.com/45R8XsN.png"
+         alt="https://i.imgur.com/45R8XsN.png"
+         title="45R8XsN.png"
+    /></p>
+<br />
+##### 一樣到`app.config` or `web.config` 裡面找到`<connectionStrings>`後複製`name=Entities`這一條，在下方貼上並將`name`改成`EntitiesP`，`ConnectionString`需自行修改成自己的正式環境資訊。
+![](https://i.imgur.com/tFJGhht.png)
+<br />
+<h5 id="接下來在原先宣告entity的地方改成如下圖如需切換entity-connection只要修改appconfig-or-webconfigappsettings裡面的內容就好了" class="headerLink"><a href="#%e6%8e%a5%e4%b8%8b%e4%be%86%e5%9c%a8%e5%8e%9f%e5%85%88%e5%ae%a3%e5%91%8aentity%e7%9a%84%e5%9c%b0%e6%96%b9%e6%94%b9%e6%88%90%e5%a6%82%e4%b8%8b%e5%9c%96%e5%a6%82%e9%9c%80%e5%88%87%e6%8f%9bentity-connection%e5%8f%aa%e8%a6%81%e4%bf%ae%e6%94%b9appconfig-or-webconfigappsettings%e8%a3%a1%e9%9d%a2%e7%9a%84%e5%85%a7%e5%ae%b9%e5%b0%b1%e5%a5%bd%e4%ba%86" class="header-mark"></a>接下來在原先宣告Entity的地方改成如下圖,如需切換Entity Connection只要修改<code>app.config</code> or <code>web.config</code><appSettings>裡面的內容就好了。</h5><p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://i.imgur.com/d8A6O3V.png"
+         alt="https://i.imgur.com/d8A6O3V.png"
+         title="d8A6O3V.png"
+    /></p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.gitlab.io/entityframwork1/" data-title="[C#]切換不同環境 Entity " data-hashtags="C Sharp,Entity"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.gitlab.io/entityframwork1/" data-hashtag="C Sharp"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.gitlab.io/entityframwork1/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.gitlab.io/entityframwork1/" data-title="[C#]切換不同環境 Entity "><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.gitlab.io/entityframwork1/" data-title="[C#]切換不同環境 Entity "><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.gitlab.io/entityframwork1/" data-title="[C#]切換不同環境 Entity " data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.gitlab.io/entityframwork1/" data-title="[C#]切換不同環境 Entity "><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/c-sharp/" class="tag">C Sharp</a><a href="/tags/entity/" class="tag">Entity</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.4">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.gitlab.io/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>

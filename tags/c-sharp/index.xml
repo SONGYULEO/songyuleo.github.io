@@ -7,30 +7,28 @@
     <title>[C#]Aspose for . NET 筆記</title>
     <link>https://songyuleo.gitlab.io/aspose/</link>
     <pubDate>Wed, 21 Apr 2021 14:13:00 &#43;0000</pubDate>
-    <author>Leo He</author>
+    <author>Leo Ho</author>
     <guid>https://songyuleo.gitlab.io/aspose/</guid>
-    <description><![CDATA[<p>呼 已經許久沒更新文章了，距離上一次是2018&hellip;，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。</p>
-<hr>
-<p>相信在公司碰過文件轉換的需求（如word to pdf），特別又是office 系列一定用過<em><strong>DCOM</strong></em>來處理這個問題，但微軟已經不support 這個元件，所以使用上會出現一些怪怪問題。。</p>]]></description>
+    <description><![CDATA[<p>呼 已經許久沒更新文章了，距離上一次是2018&hellip;，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。</p>]]></description>
 </item><item>
     <title>[C#]切換不同環境 Entity </title>
-    <link>https://songyuleo.gitlab.io/entityswitch/</link>
+    <link>https://songyuleo.gitlab.io/entityframwork1/</link>
     <pubDate>Sun, 02 Dec 2018 17:56:00 &#43;0000</pubDate>
-    <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/entityswitch/</guid>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.gitlab.io/entityframwork1/</guid>
     <description><![CDATA[<p>在開發期間使用的Entity是在test環境下，但要切換到正式環境不用整個專案review一次或者把entity拿掉才能切換過去，不能針對xxx.edmx底下的<code>DbContext</code>直接修改，這是系統自動產生的，但可以再另外partail class要切換的Connection name 。</p>]]></description>
 </item><item>
     <title>[C#、JQuery]Cross-Domain server 端處理</title>
-    <link>https://songyuleo.gitlab.io/cross_domain/</link>
+    <link>https://songyuleo.gitlab.io/csharp2/</link>
     <pubDate>Wed, 12 Sep 2018 20:41:00 &#43;0000</pubDate>
-    <author>Leo He</author>
-    <guid>https://songyuleo.gitlab.io/cross_domain/</guid>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.gitlab.io/csharp2/</guid>
     <description><![CDATA[<p>紀錄一下許早之前遇到的<code>Cross-Domain</code>問題，在Local測試得很開心都沒問題，一把東西丟到測試環境這問題就出現了&hellip;</p>]]></description>
 </item><item>
     <title>[C#]自訂排序(Custom Sort)</title>
     <link>https://songyuleo.gitlab.io/csharp1/</link>
     <pubDate>Sat, 21 Jul 2018 14:13:00 &#43;0000</pubDate>
-    <author>Leo He</author>
+    <author>Leo Ho</author>
     <guid>https://songyuleo.gitlab.io/csharp1/</guid>
     <description><![CDATA[<p>User這次給了一道題目，按照指定的規則且多個條件下排序資料&hellip;，這非得要實作<a href="https://msdn.microsoft.com/zh-tw/library/system.icomparable&amp;#40;v=vs.110&amp;#41;.aspx" target="_blank" rel="noopener noreffer"><code>IComparable</code></a>來實現了。</p>]]></description>
 </item></channel>
