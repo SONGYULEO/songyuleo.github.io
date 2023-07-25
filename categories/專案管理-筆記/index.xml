@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>專案管理 筆記 - 分類 - 里歐口袋筆記</title>
-        <link>https://songyuleo.gitlab.io/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/</link>
+        <link>https://songyuleo.github.io/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/</link>
         <description>專案管理 筆記 - 分類 - 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/" rel="self" type="application/rss+xml" /><item>
     <title>[專案管理]淺談敏捷專案管理實務Part 1</title>
-    <link>https://songyuleo.gitlab.io/projectmanagent1/</link>
+    <link>https://songyuleo.github.io/projectmanagent1/</link>
     <pubDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/projectmanagent1/</guid>
+    <guid>https://songyuleo.github.io/projectmanagent1/</guid>
     <description><![CDATA[<p>在許多公司的軟體發展管理上，逐漸盛行敏捷管理(Agile)也很常聽到名詞<code>敏捷</code>、<code>快速</code>、<code>Scrum</code>等，在幾次面試新進員工跟了解其在過去參與的敏捷管理的經驗，發現認知與執行的內容慘不忍睹，喪失了敏捷其核心理念，有鑒於此還是筆記一下敏捷管理方法的實務和常見的瀑布式開發(WaterFall)差異到底在哪呢?</p>]]></description>
 </item></channel>
 </rss>

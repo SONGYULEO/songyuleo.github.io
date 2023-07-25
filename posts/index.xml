@@ -1,63 +1,63 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - 里歐口袋筆記</title>
-        <link>https://songyuleo.gitlab.io/posts/</link>
+        <link>https://songyuleo.github.io/posts/</link>
         <description>所有文章 | 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.gitlab.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>[專案管理]淺談敏捷專案管理實務Part 1</title>
-    <link>https://songyuleo.gitlab.io/projectmanagent1/</link>
+    <link>https://songyuleo.github.io/projectmanagent1/</link>
     <pubDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/projectmanagent1/</guid>
+    <guid>https://songyuleo.github.io/projectmanagent1/</guid>
     <description><![CDATA[<p>在許多公司的軟體發展管理上，逐漸盛行敏捷管理(Agile)也很常聽到名詞<code>敏捷</code>、<code>快速</code>、<code>Scrum</code>等，在幾次面試新進員工跟了解其在過去參與的敏捷管理的經驗，發現認知與執行的內容慘不忍睹，喪失了敏捷其核心理念，有鑒於此還是筆記一下敏捷管理方法的實務和常見的瀑布式開發(WaterFall)差異到底在哪呢?</p>]]></description>
 </item><item>
     <title>[Tools]VS Code Plugin - ERD Editor 筆記</title>
-    <link>https://songyuleo.gitlab.io/erdeditor/</link>
+    <link>https://songyuleo.github.io/erdeditor/</link>
     <pubDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/erdeditor/</guid>
+    <guid>https://songyuleo.github.io/erdeditor/</guid>
     <description><![CDATA[<p>相信在許多軟體開發上，前期分析難免會碰到資料庫的設計與規劃，若手頭上剛好有VS Code 這套IDE工具，可以來試試這個很讚的plugin吧！</p>]]></description>
 </item><item>
     <title>[C#]Aspose for . NET 筆記</title>
-    <link>https://songyuleo.gitlab.io/aspose/</link>
+    <link>https://songyuleo.github.io/aspose/</link>
     <pubDate>Wed, 21 Apr 2021 14:13:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/aspose/</guid>
+    <guid>https://songyuleo.github.io/aspose/</guid>
     <description><![CDATA[<p>呼 已經許久沒更新文章了，距離上一次是2018&hellip;，當然這之中也經歷了職涯轉換、部落格由原本的Hexo 換到Hugo 等，再來陸陸續續會慢慢整理弄上來。</p>]]></description>
 </item><item>
     <title>[C#]切換不同環境 Entity </title>
-    <link>https://songyuleo.gitlab.io/entityframwork1/</link>
+    <link>https://songyuleo.github.io/entityframwork1/</link>
     <pubDate>Sun, 02 Dec 2018 17:56:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/entityframwork1/</guid>
+    <guid>https://songyuleo.github.io/entityframwork1/</guid>
     <description><![CDATA[<p>在開發期間使用的Entity是在test環境下，但要切換到正式環境不用整個專案review一次或者把entity拿掉才能切換過去，不能針對xxx.edmx底下的<code>DbContext</code>直接修改，這是系統自動產生的，但可以再另外partail class要切換的Connection name 。</p>]]></description>
 </item><item>
     <title>[C#、JQuery]Cross-Domain server 端處理</title>
-    <link>https://songyuleo.gitlab.io/csharp2/</link>
+    <link>https://songyuleo.github.io/csharp2/</link>
     <pubDate>Wed, 12 Sep 2018 20:41:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/csharp2/</guid>
+    <guid>https://songyuleo.github.io/csharp2/</guid>
     <description><![CDATA[<p>紀錄一下許早之前遇到的<code>Cross-Domain</code>問題，在Local測試得很開心都沒問題，一把東西丟到測試環境這問題就出現了&hellip;</p>]]></description>
 </item><item>
     <title>[C#]自訂排序(Custom Sort)</title>
-    <link>https://songyuleo.gitlab.io/csharp1/</link>
+    <link>https://songyuleo.github.io/csharp1/</link>
     <pubDate>Sat, 21 Jul 2018 14:13:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/csharp1/</guid>
+    <guid>https://songyuleo.github.io/csharp1/</guid>
     <description><![CDATA[<p>User這次給了一道題目，按照指定的規則且多個條件下排序資料&hellip;，這非得要實作<a href="https://msdn.microsoft.com/zh-tw/library/system.icomparable&amp;#40;v=vs.110&amp;#41;.aspx" target="_blank" rel="noopener noreffer"><code>IComparable</code></a>來實現了。</p>]]></description>
 </item><item>
     <title>[JQuery]動態欄位(Dynamic column)</title>
-    <link>https://songyuleo.gitlab.io/jquery1/</link>
+    <link>https://songyuleo.github.io/jquery1/</link>
     <pubDate>Sat, 14 Jul 2018 13:56:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/jquery1/</guid>
+    <guid>https://songyuleo.github.io/jquery1/</guid>
     <description><![CDATA[<p>對於前端來說，許多專案針對<code>Form</code>的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用<a href="https://jquery.com/" target="_blank" rel="noopener noreffer"><code>Jquery</code></a>來實現</p>]]></description>
 </item><item>
     <title>[AngularJS] $broadcast , $emit , $on 事件處理機制筆記</title>
-    <link>https://songyuleo.gitlab.io/angularjs/</link>
+    <link>https://songyuleo.github.io/angularjs/</link>
     <pubDate>Sat, 09 Jun 2018 14:00:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.gitlab.io/angularjs/</guid>
+    <guid>https://songyuleo.github.io/angularjs/</guid>
     <description><![CDATA[<p>公司專案使用<a href="https://code.angularjs.org/1.6.10/docs/guide/migration" target="_blank" rel="noopener noreffer"><code>AngularJs 1.6</code></a>開發,面對使用者複雜又特殊的requirement ，一個page切多個<code>controller</code>也方便未來維護，那<code>controller</code>間如何來互相傳值呢?</p>]]></description>
 </item></channel>
 </rss>

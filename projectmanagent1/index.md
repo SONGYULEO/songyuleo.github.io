@@ -41,7 +41,7 @@
 
 ### 讓我們來看看敏捷流程跟瀑布的流程差異
 
-![Scrum-platform](imgs/scrum.png)
+>![image.png](imgs/scrum.png)
 
 本質差異除了`做事思維的不同外`，相對於敏捷，瀑布式在個階段均須有對應文件與規劃(如SRS、SDS、WBS等)缺一均會影響專案執行和品質。
 

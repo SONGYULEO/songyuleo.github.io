@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on 里歐口袋筆記</title>
-    <link>https://songyuleo.gitlab.io/page/</link>
+    <link>https://songyuleo.github.io/page/</link>
     <description>Recent content in Pages on 里歐口袋筆記</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hant</language><atom:link href="https://songyuleo.gitlab.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-Hant</language><atom:link href="https://songyuleo.github.io/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://songyuleo.gitlab.io/page/about/</link>
+      <link>https://songyuleo.github.io/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://songyuleo.gitlab.io/page/about/</guid>
+      <guid>https://songyuleo.github.io/page/about/</guid>
       <description>About Me簡介一個由南到北又從北到南的軟體人，現任職於軟體新創公司擔任資訊部經理，目前著手於導入與發展領域驅動分析(DDD)、Agie(Scrum)、Cloud-Native&amp;hellip;
 參與過 Fin-tech 程式交易 補習班後勤管理系統 Global MES integration system 金融業 ERP開發維運和ERP轉型公版 會計產業雲端帳務平台(Web、App)並於政府計畫雲市集、數位共好推廣與上架 由於工作所學甚多，常常筆記丟東丟西，乾脆弄一個blog來記錄、整理一下順便也幫自己複習一下…</description>
     </item>
