@@ -3,13 +3,20 @@
         <title>所有文章 - 里歐口袋筆記</title>
         <link>https://songyuleo.github.io/posts/</link>
         <description>所有文章 | 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sun, 26 Dec 2021 14:22:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[專案管理]淺談敏捷專案管理實務Part 2</title>
+    <link>https://songyuleo.github.io/projectmanagent2/</link>
+    <pubDate>Sun, 26 Dec 2021 14:22:00 &#43;0000</pubDate>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.github.io/projectmanagent2/</guid>
+    <description><![CDATA[<p>延續上次<a href="/projectmanagent1" rel="">敏捷管理實務Part1</a> 內容，本篇針對Scrum流派的實務內容和甚麼是所謂的最小可行性產品介紹~</p>]]></description>
+</item><item>
     <title>[專案管理]淺談敏捷專案管理實務Part 1</title>
     <link>https://songyuleo.github.io/projectmanagent1/</link>
     <pubDate>Tue, 02 Nov 2021 11:10:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
     <guid>https://songyuleo.github.io/projectmanagent1/</guid>
-    <description><![CDATA[<p>在許多公司的軟體發展管理上，逐漸盛行敏捷管理(Agile)也很常聽到名詞<code>敏捷</code>、<code>快速</code>、<code>Scrum</code>等，在幾次面試新進員工跟了解其在過去參與的敏捷管理的經驗，發現認知與執行的內容慘不忍睹，喪失了敏捷其核心理念，有鑒於此還是筆記一下敏捷管理方法的實務和常見的瀑布式開發(WaterFall)差異到底在哪呢?</p>]]></description>
+    <description><![CDATA[<p>在許多公司的軟體發展管理上，逐漸盛行敏捷管理(Agile)也很常聽到名詞<code>敏捷</code>、<code>快速</code>、<code>Scrum</code>、<code>站會</code>等，在幾次面試新進員工跟了解其在過去參與的敏捷管理的經驗，發現認知與執行的內容慘不忍睹，喪失了敏捷其核心理念，有鑒於此還是筆記一下敏捷管理方法的實務和常見的瀑布式開發(WaterFall)差異到底在哪呢?</p>]]></description>
 </item><item>
     <title>[Tools]VS Code Plugin - ERD Editor 筆記</title>
     <link>https://songyuleo.github.io/erdeditor/</link>
