@@ -124,4 +124,12 @@ Sprint 關注這次需要完成和增量的PBL項目和其展開的工作內容�
 
 
 ---
+## 參考
+[visual-paradigm](https://www.visual-paradigm.com/tw/scrum/)
+
+[agilemanifesto org](http://agilemanifesto.org/)
+
+[codobux](codobux.medium.com)
+
+---
 呼~ 篇長有點多，但卻是敏捷管理法不可忽略的知識還有實作上常常被人遺忘的核心理念，下一篇來撰寫一下運用`Azure DevOps` 來實作敏捷專案管理吧~

@@ -113,6 +113,11 @@ data:
 
 
 ---
+## 參考
+
+[Kubernetes.io](https://kubernetes.io/zh-cn/docs/concepts/)
+
+---
 
 以上完成就可以享受設定的成果~
 

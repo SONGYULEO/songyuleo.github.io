@@ -4,7 +4,7 @@
 <!--more-->
 
 ## 1. 敏捷理念
-`敏捷`一詞源自[`敏捷宣言(Agile Manifesto)`](https://code.angularjs.org/1.6.10/docs/guide/migration)，著重於
+`敏捷`一詞源自[`敏捷宣言(Agile Manifesto)`](http://agilemanifesto.org/)，著重於
 - **個人與互動** 重於 流程與工具
 - **可用的軟體** 重於 詳盡的文件
 - **與客戶合作** 重於 合約協商
@@ -24,7 +24,7 @@
 
 
 ---
-## 2. 敏捷VS瀑布
+## 2. 敏捷 VS 瀑布
 
 敏捷說穿只是一個思維，常聽到的`Scrum`為其實現這個理念的其中一個流派，讓我們先來試問團隊是否需要敏捷?
 
@@ -49,7 +49,12 @@
 敏捷注重團隊溝通和做團隊認為最優先的事情以利最短時間內完成`最小可行性產品(MVP)`並持續驗證產品可行性，快速即時修正調整產品方向，依此來降低執行專案風險
 
 ---
+## 參考
+[visual-paradigm](https://www.visual-paradigm.com/tw/scrum/)
 
+[agilemanifesto org](http://agilemanifesto.org/)
+
+---
 下一篇來介紹Scrum 執行實務內容和最小可行性產品(MVP)
 
 
