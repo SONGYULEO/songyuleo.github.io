@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數 | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數" />
+<meta property="og:description" content="許多玩容器化的人均會面臨到「如何將環境變數設定」映射到應用程式內，因應目的不同多個環境(Dev、UAT、PROD等)該怎配置?，這邊手頭上目前碰到的組合.NET Core 6 &#43; Azure DevOps CD &#43; AKS 來說明" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.github.io/kubernetes1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-01T00:00:00+00:00" />
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://songyuleo.github.io/kubernetes1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.github.io\/kubernetes1\/"
+        },"image": ["https:\/\/songyuleo.github.io\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "ASP.NET Core, Kubernetes, DevOps","wordCount":  205 ,
+        "url": "https:\/\/songyuleo.github.io\/kubernetes1\/","datePublished": "2022-03-01T00:00:00+00:00","dateModified": "2022-03-01T00:00:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kubernetes 筆記",
+            "item": "https://songyuleo.github.io/categories/kubernetes-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數"
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"><i class='fas fa-tag'></i> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"><i class='far fa-bookmark'></i> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/"><i class='far fa-address-book'></i> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title=""><i class='fas fa-tag'></i>標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title=""><i class='far fa-bookmark'></i>分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/" title=""><i class='far fa-address-book'></i>關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">主頁 </a></li><li><a href="/categories/kubernetes-%E7%AD%86%E8%A8%98/">Kubernetes 筆記 </a></li><li>[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/kubernetes-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>Kubernetes 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2022-03-01">2022-03-01</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 205 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-kubernetesk8s-變數簡介">1. Kubernetes(k8s) 變數簡介</a></li>
+    <li><a href="#2-aspnet-core-部分">2. ASP.NET Core 部分</a></li>
+    <li><a href="#3-azure-devops-cdrelease">3. Azure Devops CD(Release)</a></li>
+    <li><a href="#4-kubernetes上的環境變數設定">4. Kubernetes上的環境變數設定</a>
+      <ul>
+        <li><a href="#ps-建議-將機敏資訊存放於secret中預設使用opaque-type-且為base64編碼方式">ps. <strong><code>建議</code></strong> 將機敏資訊存放於Secret中(預設使用Opaque type 且為base64編碼方式)!!</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考">參考</a></li>
+  </ul>
+</nav></div>
+                    </div><p>許多玩容器化的人均會面臨到「如何將環境變數設定」映射到應用程式內，因應目的不同多個環境(Dev、UAT、PROD等)該怎配置?，這邊手頭上目前碰到的組合.NET Core 6 + Azure DevOps CD + AKS 來說明</p>
+<h2 id="1-kubernetesk8s-變數簡介" class="headerLink"><a href="#1-kubernetesk8s-%e8%ae%8a%e6%95%b8%e7%b0%a1%e4%bb%8b" class="header-mark"></a>1. Kubernetes(k8s) 變數簡介</h2><p>k8s要設定環境變數絕對會看過兩個配置：<strong>ConfigMaps</strong>、<strong>Secrets</strong>，這兩項還不是很清楚也可以參考官方對於<a href="https://kubernetes.io/docs/concepts/configuration/configmap/" target="_blank" rel="noopener noreffer">configmap</a>和<a href="https://kubernetes.io/docs/concepts/configuration/secret/" target="_blank" rel="noopener noreffer">secrets</a>的解說，以下為一張運用場景圖</p>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/k8s1.gif"
+         alt="image.gif"
+         title="k8s1.gif"
+    /></p>
+</blockquote>
+<h2 id="2-aspnet-core-部分" class="headerLink"><a href="#2-aspnet-core-%e9%83%a8%e5%88%86" class="header-mark"></a>2. ASP.NET Core 部分</h2><p>在開發角度很常如圖這樣設定變數，像是DB Connection也會在<code>appsettings.XXX.json</code>其中(擷取其中一段)</p>
+<blockquote>
+<p>
+
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://songyuleo.github.io/kubernetes1/imgs/k8s2_hu340120beae839123b51ee9e8b77bb52e_79186_1600x0_resize_q100_box_3.png"
+         alt="image.png"
+         title="k8s2.png"
+    /></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">  <span class="s2">&#34;ConnectionStrings&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Identity&#34;</span><span class="p">:</span> <span class="s2">&#34;server=xxxxxxxxx;port=3306;database=xxxxxx;uid={userid};pwd={password};sslmode=Preferred&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Identity&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;UserId&#34;</span><span class="p">:</span> <span class="s2">&#34;xxxxxx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Password&#34;</span><span class="p">:</span> <span class="s2">&#34;xxxxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>但如果透過CD又佈署到環境該如何依照所屬環境參考變數?</strong></p>
+<h2 id="3-azure-devops-cdrelease" class="headerLink"><a href="#3-azure-devops-cdrelease" class="header-mark"></a>3. Azure Devops CD(Release)</h2><p>在CD過程中會將image 透過yaml撰寫佈署描述來執行(Deployments、ReplicaSet等)，而在其中會有定義環境參考的敘述</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">identity/deployment.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">identity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">identity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">auth</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">identity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">identity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">identity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">xxx/identity:latest       </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ConnectionStrings__Identity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">configMapKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">xxx-configs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">db.connection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Identity__Password</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">xxx-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">db.password</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Identity__UserId</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">xxx-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">db.username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>會看到env區塊有與在程式端環境設定檔相似的變數參照，而<code>configMapKeyRef</code>和<code>secretKeyRef</code>敘述則為k8s環境中變數實際的名稱和對應映射Key，但這邊設定完先確認k8s上是否設定ConfigMap和Secret了沒，不然可能因為k8s上還沒設定ConfigMap和Secret而參照不到失敗!</p>
+<h2 id="4-kubernetes上的環境變數設定" class="headerLink"><a href="#4-kubernetes%e4%b8%8a%e7%9a%84%e7%92%b0%e5%a2%83%e8%ae%8a%e6%95%b8%e8%a8%ad%e5%ae%9a" class="header-mark"></a>4. Kubernetes上的環境變數設定</h2><p>首先我們要準備兩份yaml檔，各別為<code>ConfigMap</code>和<code>Secret</code>，並設定到k8s</p>
+<h3 id="ps-建議-將機敏資訊存放於secret中預設使用opaque-type-且為base64編碼方式" class="headerLink"><a href="#ps-%e5%bb%ba%e8%ad%b0-%e5%b0%87%e6%a9%9f%e6%95%8f%e8%b3%87%e8%a8%8a%e5%ad%98%e6%94%be%e6%96%bcsecret%e4%b8%ad%e9%a0%90%e8%a8%ad%e4%bd%bf%e7%94%a8opaque-type-%e4%b8%94%e7%82%babase64%e7%b7%a8%e7%a2%bc%e6%96%b9%e5%bc%8f" class="header-mark"></a>ps. <strong><code>建議</code></strong> 將機敏資訊存放於Secret中(預設使用Opaque type 且為base64編碼方式)!!</h3><p>ConfigMap</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">xxx-configs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">auth</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db.connection</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;-</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    server=xxxxx;port=3306;database=xxxx;uid={userid};pwd={password};sslmode=Preferred</span><span class="w">    
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Secret</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">xxx-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">auth</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Opaque</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db.password</span><span class="p">:</span><span class="w"> </span><span class="l">dGVzdA==</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db.username</span><span class="p">:</span><span class="w"> </span><span class="l">dGVzdDEyMzQ=</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="參考" class="headerLink"><a href="#%e5%8f%83%e8%80%83" class="header-mark"></a>參考</h2><p><a href="https://kubernetes.io/zh-cn/docs/concepts/" target="_blank" rel="noopener noreffer">Kubernetes.io</a></p>
+<hr>
+<p>以上完成就可以享受設定的成果~</p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.github.io/kubernetes1/" data-title="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數" data-hashtags="ASP.NET Core,Kubernetes,DevOps"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.github.io/kubernetes1/" data-hashtag="ASP.NET Core"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.github.io/kubernetes1/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.github.io/kubernetes1/" data-title="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數"><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.github.io/kubernetes1/" data-title="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數"><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.github.io/kubernetes1/" data-title="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數" data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.github.io/kubernetes1/" data-title="[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數"><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/asp.net-core/" class="tag">ASP.NET Core</a><a href="/tags/kubernetes/" class="tag">Kubernetes</a><a href="/tags/devops/" class="tag">DevOps</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.4">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.github.io/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>
