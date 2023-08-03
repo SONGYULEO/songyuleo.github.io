@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "C:/Users/s8311/OneDrive/桌面/blog/home",
+	"sourceRoot": "C:/Users/LS00092/source/repos/home",
 	"sources": [
 		"themes/uBlogger/assets/css/style.scss",
 		"themes/uBlogger/assets/css/_variables.scss",
