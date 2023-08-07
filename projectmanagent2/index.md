@@ -19,8 +19,12 @@ Scrum下3355為其實務執行的核心，指的是
 
 <br>
 
-### **接下來逐步講解這些概念**
+---
+
+### ***接下來逐步講解這些概念***
 <br>
+
+
 
 ### 3個角色(scrum roles)
 ![image.png](imgs/scrum1.png)
@@ -83,7 +87,7 @@ Sprint 關注這次需要完成和增量的PBL項目和其展開的工作內容�
 >>|INPUT|增量 / Product Backlog / Issue List|
 >>|OUTPUT|修訂版Product Backlog/下一個Sprint的Sprint Backlog/獲取反饋促進合作|
 
-6. **Sprint Retrospective Meeting**：回顧會議，用來檢視回顧該次Sprint的執行狀況，秉持`捨去不好的留下好的`，並在之後Sprint持續精進
+5. **Sprint Retrospective Meeting**：回顧會議，用來檢視回顧該次Sprint的執行狀況，秉持`捨去不好的留下好的`，並在之後Sprint持續精進
 
 >>|ITEM|詳細說明|
 >>|--|--|
@@ -108,7 +112,59 @@ Sprint 關注這次需要完成和增量的PBL項目和其展開的工作內容�
 
 
 ---
-## 2. 甚麼是MVP最小可行性產品(Minimum Viable Product)
+## 2. Scrum搭配時程案例
+介紹完以上概念我們開始來整理如何搭配吧!
+
+
+**案例假設一個Sprint 規劃為兩周:**
+- **2022/9/05 (一)為第一個Sprint開始日，2022/9/16 (五)為第一個Sprint結束日。**
+- **2022/9/19 (一)為第二個Sprint開始日，2022/9/30 (五)為第二個Sprint結束日。**
+
+- 然後我們有以下這些會議
+>![Alt text](imgs/scrum5.png)
+
+- ### **讓我們擺到行事曆吧!**
+
+>![Alt text](imgs/scrum6.png)
+
+<br>
+
+ ### **：等等!? 怎多了一個 Refine Meeting ?**
+
+<br>
+
+ #### 根據Scrum Guide：
+
+>Product Backlog refinement is the act of breaking down and further defining Product Backlog items into smaller more precise items. This is an ongoing activity to add details, such as a description, order, and size. Attributes often vary with the domain of work.
+
+##### ref：[Scrum Guide](https://scrumguides.org/scrum-guide.html)
+
+#### Product Backlog refinement 又稱為 「**產品精煉會議**」 是一個持續為產品待辦清單增加更多細節、估計及優先順序的作法，由 「**PO**」 和 「**DEV Team**」針對PBL進行細節討論、修改和調整的過程，這個會議一般會在「**下一次Sprint 的Plan Meeting**」 之前 ***(因為這樣才能確定哪些是清楚可以排入Sprint的PBL)***
+
+<br>
+
+###  Story Refinement Meeting
+
+>>|ITEM|詳細說明|
+>>|--|--|
+>>|WHY|為接下來的一到兩個Sprint作準備|
+>>|WHO|Scrum Team|
+>>|WHEN|Sprint進行中|
+>>|WHAT|1.澄清 2.拆分 3.排序 4.更新驗收標準|
+>>|INPUT|Product Backlog|
+>>|OUTPUT|Product Backlog|
+
+### 回到上面的行事曆排程會發現Sprint 1 的循環中
+### 「**Refinement Meeting**」其實是 Refine Sprint 2 之後的PBL !!
+
+
+<br>
+<br>
+
+### ***綜合以上其實會發現Scrum 利用很多會議和方式讓需求逐漸明確、逐漸降低風險、快速反應市場等，更重要是團隊間的「合作和信任」***
+
+---
+## 3. 甚麼是MVP最小可行性產品(Minimum Viable Product)
 
 當判斷目標且發現適合使用敏捷式管理時，往往對於未來充滿不確定性，但如何最低成本、速度、反映到市場上並測試可行就是一大關鍵
 
@@ -120,7 +176,7 @@ Sprint 關注這次需要完成和增量的PBL項目和其展開的工作內容�
 
 目標為解決`人類移動上的問題`，假設每個階段都為每個Sprint的增量，上方可以看到第一次增量僅有一顆輪子並無法拿來做為解決人類移動的`可行性`，而同階段下方可以看到為一個滑板，但其符合`最小`且`可行性`。
 
-***總結當我們在規劃每次Sprint時，盡量以達成MVP為目標來規劃***
+### ***總結當我們在規劃每次Sprint時，盡量以達成MVP為目標來規劃***
 
 
 ---
@@ -130,6 +186,8 @@ Sprint 關注這次需要完成和增量的PBL項目和其展開的工作內容�
 [agilemanifesto org](http://agilemanifesto.org/)
 
 [codobux](codobux.medium.com)
+
+[scrum guides](https://scrumguides.org/)
 
 ---
 呼~ 篇長有點多，但卻是敏捷管理法不可忽略的知識還有實作上常常被人遺忘的核心理念，下一篇來撰寫一下運用`Azure DevOps` 來實作敏捷專案管理吧~

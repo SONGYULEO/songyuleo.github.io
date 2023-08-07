@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps) | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)" />
+<meta property="og:description" content="這次會運用Azure DevOps來實作敏捷管理，想了解敏捷相關知識可以參考敏捷管理實務Part2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.github.io/projectmanagent3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-15T20:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-15T20:00:00+00:00" />
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://songyuleo.github.io/projectmanagent3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.github.io\/projectmanagent3\/"
+        },"image": ["https:\/\/songyuleo.github.io\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "專案管理","wordCount":  72 ,
+        "url": "https:\/\/songyuleo.github.io\/projectmanagent3\/","datePublished": "2022-03-15T20:00:00+00:00","dateModified": "2022-03-15T20:00:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "專案管理 筆記",
+            "item": "https://songyuleo.github.io/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)"
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"><i class='fas fa-tag'></i> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"><i class='far fa-bookmark'></i> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/"><i class='far fa-address-book'></i> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title=""><i class='fas fa-tag'></i>標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title=""><i class='far fa-bookmark'></i>分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/" title=""><i class='far fa-address-book'></i>關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">主頁 </a></li><li><a href="/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/">專案管理 筆記 </a></li><li>[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>專案管理 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2022-03-15">2022-03-15</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 72 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-azure-devops-是啥">1. Azure DevOps 是啥?</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ps-azure-devops-services為一套saas-大部分功能免費流程管理工具詳細可以參考-azure-devopshttpsazuremicrosoftcomen-usproductsdevops">ps. Azure DevOps Services為一套SaaS 大部分功能免費流程管理工具，詳細可以參考 <a href="https://azure.microsoft.com/en-us/products/devops">Azure DevOps</a></a></li>
+          </ul>
+        </li>
+        <li><a href="#而我們今天主要來講-azure-boards">而我們今天主要來講 <strong>Azure Boards</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-產品功能清單pbl-on-azure-devops-board">2. 產品功能清單(PBL) on Azure DevOps Board</a>
+      <ul>
+        <li><a href="#在azure-devops-board--產品清單層級分為四層">在Azure DevOps Board  產品清單層級分為四層</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#ps-需先確認organization-settings----board----process-目前專案是否採用scrum流程">ps. 需先確認Organization Settings &ndash;&gt; Board &ndash;&gt; Process ，目前專案是否採用Scrum流程</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#21-產品清單定義">2.1 產品清單定義</a></li>
+        <li><a href="#22-如何撰寫product-backlogpbl">2.2 如何撰寫Product Backlog(PBL)?</a></li>
+        <li><a href="#23-敏捷和產品清單工作流程">2.3 敏捷和產品清單工作流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#結論">結論</a></li>
+    <li><a href="#參考">參考</a></li>
+  </ul>
+</nav></div>
+                    </div><p>這次會運用<strong>Azure DevOps</strong>來實作敏捷管理，想了解敏捷相關知識可以參考<a href="/projectmanagent2" rel="">敏捷管理實務Part2</a></p>
+<h2 id="1-azure-devops-是啥" class="headerLink"><a href="#1-azure-devops-%e6%98%af%e5%95%a5" class="header-mark"></a>1. Azure DevOps 是啥?</h2><p>先來闡述DevOps，指的是 <strong>「Development」</strong> + <strong>「Operations」</strong> ，精神在於將資訊透明並整合在一起，縮短產品產出時間並達到品質；而 <strong>Azure DevOps</strong> 除了上述也另外整合了需求面，可讓團隊規劃工作。 <strong>Azure DevOps</strong> 支援共同作業文化，可將開發人員、產品和利害關係人整合在一起來開發軟體。</p>
+<h4 id="ps-azure-devops-services為一套saas-大部分功能免費流程管理工具詳細可以參考-azure-devopshttpsazuremicrosoftcomen-usproductsdevops" class="headerLink"><a href="#ps-azure-devops-services%e7%82%ba%e4%b8%80%e5%a5%97saas-%e5%a4%a7%e9%83%a8%e5%88%86%e5%8a%9f%e8%83%bd%e5%85%8d%e8%b2%bb%e6%b5%81%e7%a8%8b%e7%ae%a1%e7%90%86%e5%b7%a5%e5%85%b7%e8%a9%b3%e7%b4%b0%e5%8f%af%e4%bb%a5%e5%8f%83%e8%80%83-azure-devopshttpsazuremicrosoftcomen-usproductsdevops" class="header-mark"></a>ps. Azure DevOps Services為一套SaaS 大部分功能免費流程管理工具，詳細可以參考 <a href="https://azure.microsoft.com/en-us/products/devops" target="_blank" rel="noopener noreffer">Azure DevOps</a></h4><h3 id="而我們今天主要來講-azure-boards" class="headerLink"><a href="#%e8%80%8c%e6%88%91%e5%80%91%e4%bb%8a%e5%a4%a9%e4%b8%bb%e8%a6%81%e4%be%86%e8%ac%9b-azure-boards" class="header-mark"></a>而我們今天主要來講 <strong>Azure Boards</strong></h3><blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/pm2.png"
+         alt="Alt text"
+         title="pm2.png"
+    /></p>
+</blockquote>
+<h2 id="2-產品功能清單pbl-on-azure-devops-board" class="headerLink"><a href="#2-%e7%94%a2%e5%93%81%e5%8a%9f%e8%83%bd%e6%b8%85%e5%96%aepbl-on-azure-devops-board" class="header-mark"></a>2. 產品功能清單(PBL) on Azure DevOps Board</h2><h3 id="在azure-devops-board--產品清單層級分為四層" class="headerLink"><a href="#%e5%9c%a8azure-devops-board--%e7%94%a2%e5%93%81%e6%b8%85%e5%96%ae%e5%b1%a4%e7%b4%9a%e5%88%86%e7%82%ba%e5%9b%9b%e5%b1%a4" class="header-mark"></a>在Azure DevOps Board  產品清單層級分為四層</h3><h5 id="ps-需先確認organization-settings----board----process-目前專案是否採用scrum流程" class="headerLink"><a href="#ps-%e9%9c%80%e5%85%88%e7%a2%ba%e8%aa%8dorganization-settings----board----process-%e7%9b%ae%e5%89%8d%e5%b0%88%e6%a1%88%e6%98%af%e5%90%a6%e6%8e%a1%e7%94%a8scrum%e6%b5%81%e7%a8%8b" class="header-mark"></a>ps. 需先確認Organization Settings &ndash;&gt; Board &ndash;&gt; Process ，目前專案是否採用Scrum流程</h5><br>
+<blockquote>
+<p>
+
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://songyuleo.github.io/projectmanagent3/imgs/pm3_hu5ba40e99825822d3015204411c546f88_64334_1600x0_resize_q100_box_3.png"
+         alt="Alt text"
+         title="pm3.png"
+    /></p>
+</blockquote>
+<br>
+<br>
+<h3 id="21-產品清單定義" class="headerLink"><a href="#21-%e7%94%a2%e5%93%81%e6%b8%85%e5%96%ae%e5%ae%9a%e7%be%a9" class="header-mark"></a>2.1 產品清單定義</h3><p>需求由模糊到清晰：<strong>Epic &ndash;&gt; Future &ndash;&gt; Product Backlog &ndash;&gt; Task</strong></p>
+<p>
+
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://songyuleo.github.io/projectmanagent3/imgs/pm4_hudfccfdef29be0aa0d76d7b6559f07a6e_101537_1600x0_resize_q100_box_3.png"
+         alt="Alt text"
+         title="pm4.png"
+    /></p>
+<br>
+<blockquote>
+<p><strong>這邊可以發現Epic、Future、Product Backlog 是由PO 描述和定義，僅有Task是由開發團隊基於Product Backlog來展開工作清單</strong></p>
+</blockquote>
+<br>
+<br>
+<h3 id="22-如何撰寫product-backlogpbl" class="headerLink"><a href="#22-%e5%a6%82%e4%bd%95%e6%92%b0%e5%af%abproduct-backlogpbl" class="header-mark"></a>2.2 如何撰寫Product Backlog(PBL)?</h3><p>將目標轉化成能夠實作的細節的工具為產品需求規格文件(PRD)或稱軟體需求規格書(SRS)在瀑布式專案管理下，此份文件為最重要且也為「產品經理與開發團隊溝通」的第一步</p>
+<p>而在敏捷式管理提到 <strong>「可用的軟體重於詳盡的文件」</strong>，不必於最初將各種文件詳細產出，但還是要依照Sprint節奏依序將需求完善(PBL)。</p>
+<br>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/pm6.png"
+         alt="Alt text"
+         title="pm6.png"
+    /></p>
+<br>
+<br>
+<h3 id="23-敏捷和產品清單工作流程" class="headerLink"><a href="#23-%e6%95%8f%e6%8d%b7%e5%92%8c%e7%94%a2%e5%93%81%e6%b8%85%e5%96%ae%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b" class="header-mark"></a>2.3 敏捷和產品清單工作流程</h3><p>以Sprint 執行的基準來看Product Backlog 和Task 間的狀態關係如何變化 !</p>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/pm5.png"
+         alt="Alt text"
+         title="pm5.png"
+    /></p>
+<h2 id="結論" class="headerLink"><a href="#%e7%b5%90%e8%ab%96" class="header-mark"></a>結論</h2><p>淺談敏捷管理系列雖然不及實務完全操作手法，但可以提供幾項思維和參考給目前正在參與敏捷管理或者正在評估敏捷的各位朋友，也希望能幫助到大家，如有內容認知錯誤等也請不吝指教和見諒~~</p>
+<hr>
+<h2 id="參考" class="headerLink"><a href="#%e5%8f%83%e8%80%83" class="header-mark"></a>參考</h2><p><a href="https://azure.microsoft.com/en-us/products/devops" target="_blank" rel="noopener noreffer">Azure-DevOps</a></p>
+<p><a href="http://agilemanifesto.org/" target="_blank" rel="noopener noreffer">agilemanifesto org</a></p>
+<p><a href="codobux.medium.com" rel="">codobux</a></p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.github.io/projectmanagent3/" data-title="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)" data-hashtags="專案管理"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.github.io/projectmanagent3/" data-hashtag="專案管理"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.github.io/projectmanagent3/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.github.io/projectmanagent3/" data-title="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)"><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.github.io/projectmanagent3/" data-title="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)"><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.github.io/projectmanagent3/" data-title="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)" data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.github.io/projectmanagent3/" data-title="[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)"><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86/" class="tag">專案管理</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.4">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.github.io/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>
