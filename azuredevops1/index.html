@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[DevOps]從Azure DevOps 部署到私有伺服器 | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[DevOps]從Azure DevOps 部署到私有伺服器"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[DevOps]從Azure DevOps 部署到私有伺服器" />
+<meta property="og:description" content="用了Azure DevOps 一陣子後會發現如果我機器在地端呢？
+好在微軟本身就已考慮這個情況，這篇文章來介紹不管是地端VM或實體Server能透過幾步驟輕鬆完成CD的機器連結設定!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.github.io/azuredevops1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-02T21:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-02T21:00:00+00:00" />
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://songyuleo.github.io/azuredevops1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[DevOps]從Azure DevOps 部署到私有伺服器",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.github.io\/azuredevops1\/"
+        },"image": ["https:\/\/songyuleo.github.io\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "DevOps","wordCount":  141 ,
+        "url": "https:\/\/songyuleo.github.io\/azuredevops1\/","datePublished": "2022-04-02T21:00:00+00:00","dateModified": "2022-04-02T21:00:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "DevOps 筆記",
+            "item": "https://songyuleo.github.io/categories/devops-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[DevOps]從Azure DevOps 部署到私有伺服器"
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"><i class='fas fa-tag'></i> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"><i class='far fa-bookmark'></i> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/"><i class='far fa-address-book'></i> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title=""><i class='fas fa-tag'></i>標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title=""><i class='far fa-bookmark'></i>分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/" title=""><i class='far fa-address-book'></i>關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">主頁 </a></li><li><a href="/categories/devops-%E7%AD%86%E8%A8%98/">DevOps 筆記 </a></li><li>[DevOps]從Azure DevOps 部署到私有伺服器</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[DevOps]從Azure DevOps 部署到私有伺服器</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/devops-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>DevOps 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2022-04-02">2022-04-02</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 141 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-設定步驟">1. 設定步驟</a>
+      <ul>
+        <li><a href="#11--windows-agnet-安裝httpslearnmicrosoftcomen-usazuredevopspipelinesagentswindows-agentviewazure-devops">1.1  <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops">Windows agnet 安裝</a></a>
+          <ul>
+            <li><a href="#111-首先確認一下需安裝的環境版本避免無法成功安裝agent">1.1.1 首先確認一下需安裝的環境版本，避免無法成功安裝Agent</a></li>
+            <li><a href="#112-至azure-devops右上-user-settings-選擇-personal-access-tokens">1.1.2 至Azure DevOps右上 &ldquo;User settings&rdquo; 選擇 &ldquo;Personal Access Tokens&rdquo;</a></li>
+            <li><a href="#113-點擊new-token----填寫-token-名稱並針對agent-polls-區塊-read-和-read--manage-打勾若沒看到可以點一下show-all-scopes-即可找到-並建立">1.1.3 點擊&quot;New Token&quot; &ndash;&gt; 填寫 &ldquo;Token&rdquo; 名稱並針對Agent Polls 區塊 &ldquo;Read&rdquo; 和 &ldquo;Read &amp; manage&rdquo; 打勾(若沒看到可以點一下Show all scopes 即可找到) 並建立</a></li>
+            <li><a href="#114-回到azure-devops-project-進到-deployment-groups-進行相關操作">1.1.4 回到Azure DevOps Project 進到 &ldquo;Deployment groups&rdquo; 進行相關操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#12--linux-agnet-安裝httpslearnmicrosoftcomen-usazuredevopspipelinesagentslinux-agentviewazure-devops">1.2  <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops">Linux agnet 安裝</a></a>
+          <ul>
+            <li><a href="#121-同windows-安裝確認一下環境">1.2.1 同windows 安裝，確認一下環境</a></li>
+            <li><a href="#122-取得personal-access-token-和進到deployment-groups-設定-詳細步驟同112114">1.2.2 取得Personal Access Token 和進到Deployment groups 設定 (詳細步驟同1.1.2~1.1.4)</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-azure-devops-pipelines-部署調整">2. Azure DevOps Pipelines 部署調整</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考">參考</a></li>
+  </ul>
+</nav></div>
+                    </div><p>用了Azure DevOps 一陣子後會發現如果我機器在地端呢？</p>
+<p>好在微軟本身就已考慮這個情況，這篇文章來介紹不管是地端VM或實體Server能透過幾步驟輕鬆完成CD的機器連結設定!</p>
+<h2 id="1-設定步驟" class="headerLink"><a href="#1-%e8%a8%ad%e5%ae%9a%e6%ad%a5%e9%a9%9f" class="header-mark"></a>1. 設定步驟</h2><p>這邊先確認一下要設定的機器環境的OS部分，微軟很棒的針對了<strong>Windows</strong>、<strong>Linux</strong>、<strong>macOS</strong>都有對應的Agent可以設定安裝。</p>
+<p>以下針對Widows 和Linux 敘述</p>
+<h3 id="11--windows-agnet-安裝httpslearnmicrosoftcomen-usazuredevopspipelinesagentswindows-agentviewazure-devops" class="headerLink"><a href="#11--windows-agnet-%e5%ae%89%e8%a3%9dhttpslearnmicrosoftcomen-usazuredevopspipelinesagentswindows-agentviewazure-devops" class="header-mark"></a>1.1  <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops" target="_blank" rel="noopener noreffer">Windows agnet 安裝</a></h3><h4 id="111-首先確認一下需安裝的環境版本避免無法成功安裝agent" class="headerLink"><a href="#111-%e9%a6%96%e5%85%88%e7%a2%ba%e8%aa%8d%e4%b8%80%e4%b8%8b%e9%9c%80%e5%ae%89%e8%a3%9d%e7%9a%84%e7%92%b0%e5%a2%83%e7%89%88%e6%9c%ac%e9%81%bf%e5%85%8d%e7%84%a1%e6%b3%95%e6%88%90%e5%8a%9f%e5%ae%89%e8%a3%9dagent" class="header-mark"></a>1.1.1 首先確認一下需安裝的環境版本，避免無法成功安裝Agent</h4><blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-19.png"
+         alt="Alt text"
+         title="image-19.png"
+    /></p>
+</blockquote>
+<h4 id="112-至azure-devops右上-user-settings-選擇-personal-access-tokens" class="headerLink"><a href="#112-%e8%87%b3azure-devops%e5%8f%b3%e4%b8%8a-user-settings-%e9%81%b8%e6%93%87-personal-access-tokens" class="header-mark"></a>1.1.2 至Azure DevOps右上 &ldquo;User settings&rdquo; 選擇 &ldquo;Personal Access Tokens&rdquo;</h4><blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-20.png"
+         alt="Alt text"
+         title="image-20.png"
+    /></p>
+</blockquote>
+<h4 id="113-點擊new-token----填寫-token-名稱並針對agent-polls-區塊-read-和-read--manage-打勾若沒看到可以點一下show-all-scopes-即可找到-並建立" class="headerLink"><a href="#113-%e9%bb%9e%e6%93%8anew-token----%e5%a1%ab%e5%af%ab-token-%e5%90%8d%e7%a8%b1%e4%b8%a6%e9%87%9d%e5%b0%8dagent-polls-%e5%8d%80%e5%a1%8a-read-%e5%92%8c-read--manage-%e6%89%93%e5%8b%be%e8%8b%a5%e6%b2%92%e7%9c%8b%e5%88%b0%e5%8f%af%e4%bb%a5%e9%bb%9e%e4%b8%80%e4%b8%8bshow-all-scopes-%e5%8d%b3%e5%8f%af%e6%89%be%e5%88%b0-%e4%b8%a6%e5%bb%ba%e7%ab%8b" class="header-mark"></a>1.1.3 點擊&quot;New Token&quot; &ndash;&gt; 填寫 &ldquo;Token&rdquo; 名稱並針對Agent Polls 區塊 &ldquo;Read&rdquo; 和 &ldquo;Read &amp; manage&rdquo; 打勾(若沒看到可以點一下Show all scopes 即可找到) 並建立</h4><ul>
+<li>填寫 和勾選Agent pools區塊</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://songyuleo.github.io/azuredevops1/imgs/image-21_hu37f814214bc76778d9a073cb81b9c69d_142388_1600x0_resize_q100_box_3.png"
+         alt="Alt text"
+         title="image-21.png"
+    /></p>
+</blockquote>
+<ul>
+<li>Agent Pools 區塊</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image.png"
+         alt="Alt text"
+         title="image.png"
+    /></p>
+</blockquote>
+<ul>
+<li>建立成功(注意這組Token 要存起來後續設定會用到)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-1.png"
+         alt="Alt text"
+         title="image-1.png"
+    /></p>
+</blockquote>
+<h4 id="114-回到azure-devops-project-進到-deployment-groups-進行相關操作" class="headerLink"><a href="#114-%e5%9b%9e%e5%88%b0azure-devops-project-%e9%80%b2%e5%88%b0-deployment-groups-%e9%80%b2%e8%a1%8c%e7%9b%b8%e9%97%9c%e6%93%8d%e4%bd%9c" class="header-mark"></a>1.1.4 回到Azure DevOps Project 進到 &ldquo;Deployment groups&rdquo; 進行相關操作</h4><ul>
+<li>點擊 &ldquo;New&rdquo; 並填寫設定名稱</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-2.png"
+         alt="Alt text"
+         title="image-2.png"
+    /></p>
+</blockquote>
+<ul>
+<li>複製畫面script 貼至欲安裝agnet環境的PowerShell中執行(administrator)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-3.png"
+         alt="Alt text"
+         title="image-3.png"
+    /></p>
+</blockquote>
+<ul>
+<li>輸入1.1.3 拿到的Token</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-4.png"
+         alt="Alt text"
+         title="image-4.png"
+    /></p>
+</blockquote>
+<ul>
+<li>輸入群組標籤(依照需求選填)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-5.png"
+         alt="Alt text"
+         title="image-5.png"
+    /></p>
+</blockquote>
+<ul>
+<li>啟用背景代理服務(agent 服務自動於windows 背景執行)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-6.png"
+         alt="Alt text"
+         title="image-6.png"
+    /></p>
+</blockquote>
+<ul>
+<li>輸入服務的使用者帳戶(預設為NT AUTHORITY\SYSTEM，此帳號權責很大可依照情況自行調整)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-7.png"
+         alt="Alt text"
+         title="image-7.png"
+    /></p>
+</blockquote>
+<ul>
+<li>最後會在詢問&quot;是否防止設定完直接啟動&quot;(依照自己需求調整)，都完成後會看到服務成功啟動！</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-8.png"
+         alt="Alt text"
+         title="image-8.png"
+    /></p>
+</blockquote>
+<ul>
+<li>查看服務狀態(services.msc)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-9.png"
+         alt="Alt text"
+         title="image-9.png"
+    /></p>
+</blockquote>
+<ul>
+<li>Azure DevOps Pipelines - Deployment groups 會看到剛設定完的agent 狀態為&quot;Online&quot;</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-10.png"
+         alt="Alt text"
+         title="image-10.png"
+    /></p>
+</blockquote>
+<h3 id="12--linux-agnet-安裝httpslearnmicrosoftcomen-usazuredevopspipelinesagentslinux-agentviewazure-devops" class="headerLink"><a href="#12--linux-agnet-%e5%ae%89%e8%a3%9dhttpslearnmicrosoftcomen-usazuredevopspipelinesagentslinux-agentviewazure-devops" class="header-mark"></a>1.2  <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops" target="_blank" rel="noopener noreffer">Linux agnet 安裝</a></h3><h4 id="121-同windows-安裝確認一下環境" class="headerLink"><a href="#121-%e5%90%8cwindows-%e5%ae%89%e8%a3%9d%e7%a2%ba%e8%aa%8d%e4%b8%80%e4%b8%8b%e7%92%b0%e5%a2%83" class="header-mark"></a>1.2.1 同windows 安裝，確認一下環境</h4><blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-11.png"
+         alt="Alt text"
+         title="image-11.png"
+    /></p>
+</blockquote>
+<h4 id="122-取得personal-access-token-和進到deployment-groups-設定-詳細步驟同112114" class="headerLink"><a href="#122-%e5%8f%96%e5%be%97personal-access-token-%e5%92%8c%e9%80%b2%e5%88%b0deployment-groups-%e8%a8%ad%e5%ae%9a-%e8%a9%b3%e7%b4%b0%e6%ad%a5%e9%a9%9f%e5%90%8c112114" class="header-mark"></a>1.2.2 取得Personal Access Token 和進到Deployment groups 設定 (詳細步驟同1.1.2~1.1.4)</h4><ul>
+<li>複製 Linux agent script 貼至欲安裝agnet環境的shell中執行(sudo)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://songyuleo.github.io/azuredevops1/imgs/image-12_hub9f85060dcc72513f0609174624b8f7d_56931_1600x0_resize_q100_box_3.png"
+         alt="Alt text"
+         title="image-12.png"
+    /></p>
+</blockquote>
+<ul>
+<li>輸入1.1.3 拿到的Token</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-13.png"
+         alt="Alt text"
+         title="image-13.png"
+    /></p>
+</blockquote>
+<ul>
+<li>輸入群組標籤(依照需求選填)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-14.png"
+         alt="Alt text"
+         title="image-14.png"
+    /></p>
+</blockquote>
+<ul>
+<li>啟用背景代理服務(agent 服務自動於Linux背景執行)</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-15.png"
+         alt="Alt text"
+         title="image-15.png"
+    /></p>
+</blockquote>
+<ul>
+<li>Azure DevOps Pipelines - Deployment groups 會看到剛設定完的agent 狀態為&quot;Online&quot;</li>
+</ul>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-16.png"
+         alt="Alt text"
+         title="image-16.png"
+    /></p>
+</blockquote>
+<h3 id="2-azure-devops-pipelines-部署調整" class="headerLink"><a href="#2-azure-devops-pipelines-%e9%83%a8%e7%bd%b2%e8%aa%bf%e6%95%b4" class="header-mark"></a>2. Azure DevOps Pipelines 部署調整</h3><p>設定完機器連接後，回到Azure DevOps - Pipelines(Release) CD 的Task Job 相關設定中 可以看到Deployment group 可以選設定完的地端機器了！</p>
+<blockquote>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-17.png"
+         alt="Alt text"
+         title="image-17.png"
+    /></p>
+</blockquote>
+<br>
+<p>Deployment gruop 也有提供基本的部署狀況資料供人員掌握情況</p>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-18.png"
+         alt="Alt text"
+         title="image-18.png"
+    /></p>
+<hr>
+<h2 id="參考" class="headerLink"><a href="#%e5%8f%83%e8%80%83" class="header-mark"></a>參考</h2><p><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/?view=azure-devops#set-up-agents-on-deployment-groups" target="_blank" rel="noopener noreffer">Azure DevOps agent on deployment</a></p>
+<p><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops" target="_blank" rel="noopener noreffer">Azure DevOps agent on management</a></p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.github.io/azuredevops1/" data-title="[DevOps]從Azure DevOps 部署到私有伺服器" data-hashtags="DevOps"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.github.io/azuredevops1/" data-hashtag="DevOps"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.github.io/azuredevops1/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.github.io/azuredevops1/" data-title="[DevOps]從Azure DevOps 部署到私有伺服器"><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.github.io/azuredevops1/" data-title="[DevOps]從Azure DevOps 部署到私有伺服器"><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.github.io/azuredevops1/" data-title="[DevOps]從Azure DevOps 部署到私有伺服器" data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.github.io/azuredevops1/" data-title="[DevOps]從Azure DevOps 部署到私有伺服器"><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/devops/" class="tag">DevOps</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.4">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.github.io/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>

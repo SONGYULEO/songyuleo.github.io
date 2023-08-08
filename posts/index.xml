@@ -3,7 +3,15 @@
         <title>所有文章 - 里歐口袋筆記</title>
         <link>https://songyuleo.github.io/posts/</link>
         <description>所有文章 | 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 15 Mar 2022 20:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 02 Apr 2022 21:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[DevOps]從Azure DevOps 部署到私有伺服器</title>
+    <link>https://songyuleo.github.io/azuredevops1/</link>
+    <pubDate>Sat, 02 Apr 2022 21:00:00 &#43;0000</pubDate>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.github.io/azuredevops1/</guid>
+    <description><![CDATA[<p>用了Azure DevOps 一陣子後會發現如果我機器在地端呢？</p>
+<p>好在微軟本身就已考慮這個情況，這篇文章來介紹不管是地端VM或實體Server能透過幾步驟輕鬆完成CD的機器連結設定!</p>]]></description>
+</item><item>
     <title>[專案管理]淺談敏捷專案管理實務Part 3 (with Azure DevOps)</title>
     <link>https://songyuleo.github.io/projectmanagent3/</link>
     <pubDate>Tue, 15 Mar 2022 20:00:00 &#43;0000</pubDate>
@@ -66,12 +74,5 @@
     <author>Leo Ho</author>
     <guid>https://songyuleo.github.io/csharp1/</guid>
     <description><![CDATA[<p>User這次給了一道題目，按照指定的規則且多個條件下排序資料&hellip;，這非得要實作<a href="https://msdn.microsoft.com/zh-tw/library/system.icomparable&amp;#40;v=vs.110&amp;#41;.aspx" target="_blank" rel="noopener noreffer"><code>IComparable</code></a>來實現了。</p>]]></description>
-</item><item>
-    <title>[JQuery]動態欄位(Dynamic column)</title>
-    <link>https://songyuleo.github.io/jquery1/</link>
-    <pubDate>Sat, 14 Jul 2018 13:56:00 &#43;0000</pubDate>
-    <author>Leo Ho</author>
-    <guid>https://songyuleo.github.io/jquery1/</guid>
-    <description><![CDATA[<p>對於前端來說，許多專案針對<code>Form</code>的需求設計應該是百百種，常見的如動態欄位(Dynamic column)，本篇使用<a href="https://jquery.com/" target="_blank" rel="noopener noreffer"><code>Jquery</code></a>來實現</p>]]></description>
 </item></channel>
 </rss>

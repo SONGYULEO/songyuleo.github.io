@@ -3,7 +3,15 @@
         <title>DevOps - 標籤 - 里歐口袋筆記</title>
         <link>https://songyuleo.github.io/tags/devops/</link>
         <description>DevOps - 標籤 - 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Tue, 01 Mar 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/tags/devops/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 02 Apr 2022 21:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/tags/devops/" rel="self" type="application/rss+xml" /><item>
+    <title>[DevOps]從Azure DevOps 部署到私有伺服器</title>
+    <link>https://songyuleo.github.io/azuredevops1/</link>
+    <pubDate>Sat, 02 Apr 2022 21:00:00 &#43;0000</pubDate>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.github.io/azuredevops1/</guid>
+    <description><![CDATA[<p>用了Azure DevOps 一陣子後會發現如果我機器在地端呢？</p>
+<p>好在微軟本身就已考慮這個情況，這篇文章來介紹不管是地端VM或實體Server能透過幾步驟輕鬆完成CD的機器連結設定!</p>]]></description>
+</item><item>
     <title>[Kubernetes]如何讓ASP.NET Core在AKS 和 Azure DevOps CD 中綁訂環境變數</title>
     <link>https://songyuleo.github.io/kubernetes1/</link>
     <pubDate>Tue, 01 Mar 2022 00:00:00 &#43;0000</pubDate>
