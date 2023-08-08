@@ -12,7 +12,13 @@
 4. 金融業 ERP開發維運和ERP轉型公版
 5. 會計產業雲端帳務平台(Web、App)並於政府計畫`雲市集`、`數位共好`推廣與上架
 
+#### 專業證照
 
+主要專業證照：
+
+1. Project Management Professional (PMP)
+
+- ![PMP](/images/project-management-professional-pmp.png)
 
 由於工作所學甚多，常常筆記丟東丟西，乾脆弄一個blog來記錄、整理一下順便也幫自己複習一下…
 
