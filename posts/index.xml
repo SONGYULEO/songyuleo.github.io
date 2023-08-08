@@ -3,7 +3,14 @@
         <title>所有文章 - 里歐口袋筆記</title>
         <link>https://songyuleo.github.io/posts/</link>
         <description>所有文章 | 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 02 Apr 2022 21:00:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 07 May 2022 14:22:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[Angular]在Angular取得客戶IP</title>
+    <link>https://songyuleo.github.io/angular/</link>
+    <pubDate>Sat, 07 May 2022 14:22:00 &#43;0000</pubDate>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.github.io/angular/</guid>
+    <description><![CDATA[<p>有些情境可能會需要客戶端的IP來做事，例如:log等，一般作法會建議自己撰寫後端程式來解析獲得IP位置，但還有另一方法可以更快取得IP！</p>]]></description>
+</item><item>
     <title>[DevOps]從Azure DevOps 部署到私有伺服器</title>
     <link>https://songyuleo.github.io/azuredevops1/</link>
     <pubDate>Sat, 02 Apr 2022 21:00:00 &#43;0000</pubDate>
@@ -67,12 +74,5 @@
     <author>Leo Ho</author>
     <guid>https://songyuleo.github.io/csharp2/</guid>
     <description><![CDATA[<p>紀錄一下許早之前遇到的<code>Cross-Domain</code>問題，在Local測試得很開心都沒問題，一把東西丟到測試環境這問題就出現了&hellip;</p>]]></description>
-</item><item>
-    <title>[C#]自訂排序(Custom Sort)</title>
-    <link>https://songyuleo.github.io/csharp1/</link>
-    <pubDate>Sat, 21 Jul 2018 14:13:00 &#43;0000</pubDate>
-    <author>Leo Ho</author>
-    <guid>https://songyuleo.github.io/csharp1/</guid>
-    <description><![CDATA[<p>User這次給了一道題目，按照指定的規則且多個條件下排序資料&hellip;，這非得要實作<a href="https://msdn.microsoft.com/zh-tw/library/system.icomparable&amp;#40;v=vs.110&amp;#41;.aspx" target="_blank" rel="noopener noreffer"><code>IComparable</code></a>來實現了。</p>]]></description>
 </item></channel>
 </rss>

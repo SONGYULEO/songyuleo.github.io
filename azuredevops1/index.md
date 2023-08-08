@@ -102,7 +102,7 @@
 >![Alt text](imgs/image-16.png)
 
 
-### 2. Azure DevOps Pipelines 部署調整
+## 2. Azure DevOps Pipelines 部署調整
 
 設定完機器連接後，回到Azure DevOps - Pipelines(Release) CD 的Task Job 相關設定中 可以看到Deployment group 可以選設定完的地端機器了！
 
