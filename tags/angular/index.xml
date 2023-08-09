@@ -3,12 +3,19 @@
         <title>Angular - 標籤 - 里歐口袋筆記</title>
         <link>https://songyuleo.github.io/tags/angular/</link>
         <description>Angular - 標籤 - 里歐口袋筆記</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 07 May 2022 14:22:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/tags/angular/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-Hant</language><lastBuildDate>Sat, 21 May 2022 17:43:00 &#43;0000</lastBuildDate><atom:link href="https://songyuleo.github.io/tags/angular/" rel="self" type="application/rss+xml" /><item>
+    <title>[Angular]使用HttpInterceptor 處理HttpRequest和HttpResponse</title>
+    <link>https://songyuleo.github.io/angular2/</link>
+    <pubDate>Sat, 21 May 2022 17:43:00 &#43;0000</pubDate>
+    <author>Leo Ho</author>
+    <guid>https://songyuleo.github.io/angular2/</guid>
+    <description><![CDATA[<p>通常前端專案很常使用<a href="https://angular.io/api/common/http/HttpClient" target="_blank" rel="noopener noreffer">HttpClient</a>來與後端API互動，而如果需要Token認證或需要在每次的請求處理一些log機制等就需要在每一次實作HttpClient都撰寫相似的程式碼&hellip;.</p>]]></description>
+</item><item>
     <title>[Angular]在Angular取得客戶IP</title>
-    <link>https://songyuleo.github.io/angular/</link>
+    <link>https://songyuleo.github.io/angular1/</link>
     <pubDate>Sat, 07 May 2022 14:22:00 &#43;0000</pubDate>
     <author>Leo Ho</author>
-    <guid>https://songyuleo.github.io/angular/</guid>
+    <guid>https://songyuleo.github.io/angular1/</guid>
     <description><![CDATA[<p>有些情境可能會需要客戶端的IP來做事，例如:log等，一般作法會建議自己撰寫後端程式來解析獲得IP位置，但還有另一方法可以更快取得IP！</p>]]></description>
 </item></channel>
 </rss>

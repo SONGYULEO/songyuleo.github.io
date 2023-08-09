@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1PBQLV1ML');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7495640387751474"
+    crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>[Angular]在Angular取得客戶IP | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="[Angular]在Angular取得客戶IP"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="[Angular]在Angular取得客戶IP" />
+<meta property="og:description" content="有些情境可能會需要客戶端的IP來做事，例如:log等，一般作法會建議自己撰寫後端程式來解析獲得IP位置，但還有另一方法可以更快取得IP！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://songyuleo.github.io/angular1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-07T14:22:00+00:00" />
+<meta property="article:modified_time" content="2022-05-07T14:22:00+00:00" />
+<meta name="application-name" content="里歐口袋筆記">
+<meta name="apple-mobile-web-app-title" content="里歐口袋筆記"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://songyuleo.github.io/angular1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="rGVaOlIzpUfBbhedZMsOsiEfCkdVVn8zJQeRMeml_8U" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Angular]在Angular取得客戶IP",
+        "inLanguage": "zh-Hant",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/songyuleo.github.io\/angular1\/"
+        },"image": ["https:\/\/songyuleo.github.io\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Angular","wordCount":  122 ,
+        "url": "https:\/\/songyuleo.github.io\/angular1\/","datePublished": "2022-05-07T14:22:00+00:00","dateModified": "2022-05-07T14:22:00+00:00","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "主頁",
+            "item": "https:\/\/songyuleo.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Angular 筆記",
+            "item": "https://songyuleo.github.io/categories/angular-%E7%AD%86%E8%A8%98/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "[Angular]在Angular取得客戶IP"
+            }]
+    }
+</script></head>
+
+<body data-header-desktop="fixed"
+    data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+    <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="里歐口袋筆記" class="header-logo logo-svg">里歐口袋筆記</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 文章 </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"><i class='fas fa-tag'></i> 標籤 </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"><i class='far fa-bookmark'></i> 分類 </a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/"><i class='far fa-address-book'></i> 關於我 </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="里歐口袋筆記" class="header-logo">里歐口袋筆記</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            取消
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>文章</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title=""><i class='fas fa-tag'></i>標籤</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title=""><i class='far fa-bookmark'></i>分類</a>
+                        </li><li>
+                            <a class="menu-item" href="/page/about/" title=""><i class='far fa-address-book'></i>關於我</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">目錄</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">主頁 </a></li><li><a href="/categories/angular-%E7%AD%86%E8%A8%98/">Angular 筆記 </a></li><li>[Angular]在Angular取得客戶IP</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">[Angular]在Angular取得客戶IP</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/angular-%E7%AD%86%E8%A8%98/"><span class="svg-icon icon-folder"></span>Angular 筆記</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2022-05-07">2022-05-07</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>約 122 字
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>預計閱讀 1 分鐘
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>目錄</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-第三方服務">1. 第三方服務</a></li>
+    <li><a href="#2-在angular-實作取得ip服務">2. 在Angular 實作取得IP服務</a>
+      <ul>
+        <li><a href="#21-建立ip-servicets服務">2.1 建立ip-service.ts服務</a></li>
+        <li><a href="#22-實作功能">2.2 實作功能</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考">參考</a></li>
+  </ul>
+</nav></div>
+                    </div><p>有些情境可能會需要客戶端的IP來做事，例如:log等，一般作法會建議自己撰寫後端程式來解析獲得IP位置，但還有另一方法可以更快取得IP！</p>
+<h2 id="1-第三方服務" class="headerLink"><a href="#1-%e7%ac%ac%e4%b8%89%e6%96%b9%e6%9c%8d%e5%8b%99" class="header-mark"></a>1. 第三方服務</h2><p>這邊我們會使用第三方開源取得IP服務<a href="https://www.ipify.org/" target="_blank" rel="noopener noreffer">ipify</a>的API 來快速取得IP。
+
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image.png"
+         alt="Alt text"
+         title="image.png"
+    /></p>
+<br>
+<p>照官方的範例，將此段貼至網頁的網址&hellip;.結束</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://api.ipify.org?format<span class="o">=</span>json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="imgs/image-1.png"
+         alt="Alt text"
+         title="image-1.png"
+    /></p>
+<h2> 看到這邊會發現挖塞也太快了 </h2>
+<br>
+<p>接下來讓我們在Angular實作</p>
+<h2 id="2-在angular-實作取得ip服務" class="headerLink"><a href="#2-%e5%9c%a8angular-%e5%af%a6%e4%bd%9c%e5%8f%96%e5%be%97ip%e6%9c%8d%e5%8b%99" class="header-mark"></a>2. 在Angular 實作取得IP服務</h2><h3 id="21-建立ip-servicets服務" class="headerLink"><a href="#21-%e5%bb%ba%e7%ab%8bip-servicets%e6%9c%8d%e5%8b%99" class="header-mark"></a>2.1 建立ip-service.ts服務</h3><p>使用Fetch 呼叫API (Fetch 預設使用GET呼叫)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">@Injectable</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">providedIn</span><span class="o">:</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">IPService</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">constructor</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">async</span> <span class="nx">getIPv4</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.ipify.org/?format=json&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">          <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Network response was not ok.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">ip</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;not found&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-實作功能" class="headerLink"><a href="#22-%e5%af%a6%e4%bd%9c%e5%8a%9f%e8%83%bd" class="header-mark"></a>2.2 實作功能</h3><p>過來只要在要使用的地方建構注入IPService即可！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">public</span> <span class="nx">ipAddress</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">constructor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">private</span> <span class="nx">IPService</span>: <span class="kt">IPService</span><span class="p">,</span>   
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="kr">async</span> <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 取得 IP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">ipAddress</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">IPService</span><span class="p">.</span><span class="nx">getIPv4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="參考" class="headerLink"><a href="#%e5%8f%83%e8%80%83" class="header-mark"></a>參考</h2><p><a href="https://www.ipify.org/" target="_blank" rel="noopener noreffer">iptify</a></p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://songyuleo.github.io/angular1/" data-title="[Angular]在Angular取得客戶IP" data-hashtags="Angular"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://songyuleo.github.io/angular1/" data-hashtag="Angular"><span class="svg-social-icon icon-facebook"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-reddit" href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://songyuleo.github.io/angular1/"><span class="svg-social-icon icon-reddit"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-line" href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://songyuleo.github.io/angular1/" data-title="[Angular]在Angular取得客戶IP"><span class="svg-social-icon icon-line"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-weibo" href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://songyuleo.github.io/angular1/" data-title="[Angular]在Angular取得客戶IP"><span class="svg-social-icon icon-weibo"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-blogger" href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://songyuleo.github.io/angular1/" data-title="[Angular]在Angular取得客戶IP" data-description=""><span class="svg-social-icon icon-blogger"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-evernote" href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://songyuleo.github.io/angular1/" data-title="[Angular]在Angular取得客戶IP"><span class="svg-social-icon icon-evernote"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/angular/" class="tag">Angular</a></div></div>
+                </footer></div>
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.4">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://songyuleo.github.io/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2018 - 2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+    <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+            <i class="svg-icon icon-arrow-up"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+            <i class="svg-icon icon-comments-fixed"></i>
+        </a>
+    </aside><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.entries%2CObject.assign%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本網站使用 Cookies 來改善您的瀏覽體驗."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"algoliaAppID":"KI0V5GP6BS","algoliaIndex":"LEO_BLOG","algoliaSearchKey":"871ba9cdfa991061cb43d3182736bacd","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+                gtag('config', 'G-L1PBQLV1ML', { 'anonymize_ip': true });
+            </script><script src="https://www.googletagmanager.com/gtag/js?id=G-L1PBQLV1ML" async></script></body>
+
+</html>
